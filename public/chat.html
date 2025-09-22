@@ -28,8 +28,9 @@
             width: 100%;
 
         }
-        .messageText{
-            margin-left: 6px; 
+
+        .messageText {
+            margin-left: 6px;
             margin-top: 2px;
             overflow-wrap: break-word;
             word-break: break-word;
@@ -86,15 +87,17 @@
             border-radius: 10px;
             background-color: red;
         }
-        .user-sidebar{
-            display: flex; 
-            flex-direction: column; 
+
+        .user-sidebar {
+            display: flex;
+            flex-direction: column;
             width: 100%;
         }
-        .chat-input{
-            display: flex; 
-            justify-content: center; 
-            height: 100%; 
+
+        .chat-input {
+            display: flex;
+            justify-content: center;
+            height: 100%;
             position: relative;
         }
     </style>
@@ -159,13 +162,55 @@
             </form>
         </div>
         <div>
-            <div id="userSidebar" class="user-sidebar" >
+            <div id="userSidebar" class="user-sidebar">
                 <div id="userList" style="display: flex; flex-direction: column; padding: 10px ;">
 
 
                 </div>
             </div>
         </div>
+
+
+
+
+
+        <!--MODAL  -->
+
+
+        <div id="configModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div style="text-align:center;">
+                    <img src="https://i.pravatar.cc/100" alt="avatar"
+                        style="width:100px; height:100px; border-radius:50%;">
+                    <h3>Among</h3>
+                    <p style="color: gray;">@Andres</p>
+                </div>
+
+                <label for="name">Nombre</label>
+                <input type="text" id="name" value="Among">
+
+                <label for="alias">Alias</label>
+                <input type="text" id="alias" value="Andres">
+
+                <label for="role">Rol</label>
+                <select id="role">
+                    <option>Selecciona un rol</option>
+                    <option>Admin</option>
+                    <option>Usuario</option>
+                </select>
+
+                <div class="btn-group">
+                    <button id="editBtn">Editar</button>
+                    <button id="cancelBtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
     </div>
 
 
@@ -232,7 +277,11 @@
     <!-- </div> -->
 
 
-    <script type="module" src="./js/chat.js"></script>
+    <!-- Modal -->
+
+
+
+
 </body>
 
 
@@ -242,5 +291,7 @@
         el.style.height = el.scrollHeight + "px";
     }
 </script>
+
+<script type="module" src="./js/chat.js"></script>
 
 </html>
