@@ -1,4 +1,4 @@
-import { addMessage, addSystemMessage, updateUserList } from "../ui/chatUI.js";
+import { addMessage, addSystemMessage, updateUserList, addHistorial } from "../ui/chatUI.js";
 
 let socket;
 
@@ -15,11 +15,15 @@ export function connect(user) {
     });
 
     socket.addEventListener("message", (event) => {
+   
         const data = JSON.parse(event.data);
 
         switch (data.type) {
             case "chat":
-                addMessage(data.user, data.text, data.user.id === user.id);
+                addMessage(data.user, data.text,data.chanel , data.user.id === user.id);
+                break;
+            case "chanel":
+                addHistorial(data.chanel)
                 break;
             case "system":
                 addSystemMessage(data.text);
@@ -33,12 +37,23 @@ export function connect(user) {
     });
 }
 
-export function sendMessage(user, text) {
+export function sendMessage(user, text, chanel) {
     if (!socket || socket.readyState !== WebSocket.OPEN) return;
 
     socket.send(JSON.stringify({
         type: "chat",
         user: user,
-        text
+        text,
+        chanel
+    }));
+}
+
+export function sendMessageChanel(chanel) {
+    console.log(chanel)
+    if (!socket || socket.readyState !== WebSocket.OPEN) return;
+
+    socket.send(JSON.stringify({
+        type: "chanel",
+        chanel
     }));
 }

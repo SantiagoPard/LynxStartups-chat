@@ -26,6 +26,7 @@ function handleAuthRoutes(req, res) {
                             name: user.name,
                             email: user.email,
                             rol: user.rol,
+                            nickname: user.nickname,
                             img: user.img
                         }
                     }));

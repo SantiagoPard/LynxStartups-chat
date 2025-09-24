@@ -70,6 +70,7 @@
     margin-top: 10px;
     font-size: 16px;
 }
+
 .chanels > p {
     margin-left: 10px;
 }
@@ -125,7 +126,7 @@
 
 
 
-.channel {
+.chanel {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -133,20 +134,26 @@
 }
 
 
-.channel .hash {
+.chanel .hash {
   color: #374151;
 
 }
 
-.channel .bubble {
+.chanel .bubble {
 width: 90%;
   padding: 6px 0px;
   border-radius: 10px;
   transition: all 0.2s ease;
   color: #374151;
 }
-
+/* 
 .channel:hover .bubble {
   background-color: #2563eb;
+} */
+.active > button > .bubble {
+     background-color: #AFBED2;
+     color: #3B82F6;
 }
-
+.active > button > .hash{
+    color: #3B82F6;
+}

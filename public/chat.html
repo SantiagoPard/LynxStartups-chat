@@ -28,8 +28,9 @@
             width: 100%;
 
         }
-        .messageText{
-            margin-left: 6px; 
+
+        .messageText {
+            margin-left: 6px;
             margin-top: 2px;
             overflow-wrap: break-word;
             word-break: break-word;
@@ -86,16 +87,30 @@
             border-radius: 10px;
             background-color: red;
         }
-        .user-sidebar{
-            display: flex; 
-            flex-direction: column; 
+
+        .user-sidebar {
+            display: flex;
+            flex-direction: column;
             width: 100%;
         }
-        .chat-input{
-            display: flex; 
-            justify-content: center; 
-            height: 100%; 
+
+        .chat-input {
+            display: flex;
+            justify-content: center;
+            height: 100%;
             position: relative;
+        }
+
+        .btnChanel,
+        input[type="submit"],
+        input[type="reset"] {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
         }
     </style>
 </head>
@@ -114,28 +129,37 @@
                     canales de voz
                 </span>
                 <hr style="position: relative; margin-top: -8px; border: 1px solid #000; width: 100%;  z-index: -1;">
-                <div class="chanels">
-                    <div class="channel">
-                        <span class="hash">#&nbsp;</span>
-                        <span class="bubble">🏠 | Sala</span>
+                <div class="chanels" id="chanels">
+                    <div class="chanel active" id="salaDiv">
+                        <button class="btnChanel"
+                            style="margin-left: 4px; width: 100%; display: flex; flex-direction: row; align-items: center;" >
+                            <span class="hash">#&nbsp;</span>
+                            <span style="text-align: start;" class="bubble">🏠 | Sala</span>
+                        </button>
                     </div>
-                    <div class="channel">
-                        <span class="hash">#&nbsp;</span>
-                        <span class="bubble">🪲 | Bugs</span>
+                    <div class="chanel" id="bugsDiv">
+                        <button class="btnChanel"
+                            style="margin-left: 4px; width: 100%; display: flex; flex-direction: row; align-items: center;">
+                            <span class="hash">#&nbsp;</span>
+                            <span class="bubble" style="text-align: start;">🪲 | Bugs</span>
+                        </button>
                     </div>
-                    <div class="channel active">
-                        <span class="hash">#&nbsp;</span>
-                        <span class="bubble">💻 | Desarrollo</span>
+                    <div class="chanel" id="desarrolloDiv">
+                        <button class="btnChanel"
+                            style="margin-left: 4px; width: 100%; display: flex; flex-direction: row; align-items: center;">
+                            <span class="hash">#&nbsp;</span>
+                            <span class="bubble" style="text-align: start;">💻 | Desarrollo</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="user">
-                <img style="width: 50px; height: 50px;" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
+                <!-- <img style="width: 50px; height: 50px;" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
                     alt="">
                 <p style="display: flex; flex-direction: column; margin-left: -8px; font-size: 16px;">nombre <span
                         style="margin-left: 10px; color: #9CA3AF;">@hola</span></p>
-                <button>cofig</button>
+                <button>cofig</button> -->
             </div>
         </div>
         <div class="chat-container" style="padding-top: 20px;">
@@ -159,7 +183,7 @@
             </form>
         </div>
         <div>
-            <div id="userSidebar" class="user-sidebar" >
+            <div id="userSidebar" class="user-sidebar">
                 <div id="userList" style="display: flex; flex-direction: column; padding: 10px ;">
 
 
@@ -169,78 +193,15 @@
     </div>
 
 
-    <!-- <div class="layout"> -->
-    <!-- Para los canales -->
-
-    <!-- <aside class="sidebar-left">
-            <h1 class="tittle">Canales de texto</h1>
-            <ul>
-                <li>#Sala</li>
-                <li>#Bugs</li>
-                <li>#Desarrollo</li>
-            </ul>
-        </aside> -->
-
-
-
-    <!-- <div class="chat-container">
-            <header class="chat-header"> -->
-    <!-- <h2 id="chat-username">Bienvenido</h2> -->
-    <!-- <h1 class="tittle">#Sala</h1>
-                <div class="header-actions">
-                    <button id="usersToggle" class="icon-btn"><i class="fa-solid fa-users"></i></button>
-                    <button id="logoutBtn" class="icon-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
-                </div>
-            </header> -->
-
-    <!-- <main class="chat-main">
-                <div id="messages" class="messages"></div>
-            </main> -->
-
-    <!-- <form id="chatForm" class="chat-input">
-                <input type="text" id="messageInput" placeholder="Escribe un mensaje..." autocomplete="off" required />
-                <button type="submit" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-            </form>
-        </div> -->
-
-    <!-- Sidebar de usuarios -->
-    <!-- Así estba antes para que sea flotante o este oculto -->
-    <!-- <aside id="userSidebar" class="user-sidebar">
-            <div class="sidebar-header">
-                <h3>Usuarios conectados</h3>
-                <button id="closeSidebar" class="icon-btn close-btn">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <ul id="userList"> -->
-    <!-- usuarios dinámicos -->
-    <!-- </ul>
-        </aside> -->
-
-    <!-- Panel derecho -->
-
-    <!-- <aside id="userSidebar" class="sidebar-right">
-            <h1 class="tittle">Usuarios</h1>
-            <ul id="userList"></ul> -->
-    <!-- usuarios dinámicos -->
-    <!-- </aside> -->
-
-
-
-
-
-    <!-- </div> -->
-
-
     <script type="module" src="./js/chat.js"></script>
 </body>
 
 
-<script>
+<!-- <script>
     function resizeUp(el) {
         el.style.height = "auto";
         el.style.height = el.scrollHeight + "px";
     }
-</script>
+</script> -->
 
 </html>

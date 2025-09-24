@@ -34,7 +34,11 @@ function setupChat(wss) {
             }
 
             if (data.type === "chat") {
-                broadcast(users, { type: "chat", user: data.user, text: data.text });
+                broadcast(users, { type: "chat", user: data.user, text: data.text, chanel : data.chanel });
+            }
+
+            if(data.type === "chanel"){
+                ws.send(JSON.stringify({ type: "chanel", chanel: data.chanel}));
             }
         });
 

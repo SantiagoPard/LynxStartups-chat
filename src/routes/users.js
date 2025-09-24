@@ -18,13 +18,13 @@ function handleUsersRoutes(req, res) {
         if (method === "GET" && parts.length === 3 && id) {
             const users = getUsers();
             const user = users.find(u => u.id === id);
+            
             if (!user) {
                 res.writeHead(404);
                 res.end(JSON.stringify({ error: "Usuario no encontrado" }));
                 return true;
             }
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify(user));
             return true;
         }
 

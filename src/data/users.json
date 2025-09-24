@@ -4,8 +4,8 @@
         "name": "Admin",
         "password": "1234",
         "email": "admin@chat.com",
-        "nickname":"adminA",
         "rol": "admin",
+        "nickname":"adminAs",
         "img": "https://i.pravatar.cc/150?img=1"
     },
     {
