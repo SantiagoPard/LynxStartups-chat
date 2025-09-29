@@ -7,4 +7,14 @@ function broadcast(users, data) {
     });
 }
 
-module.exports = broadcast;
+function broadcastChanel(users, data){
+     const msg = JSON.stringify(data);
+    users.forEach(u => {
+        if (u.ws.readyState === 1) {
+            if(u.chanel == data.chanel)
+                u.ws.send(msg);
+        }
+    });
+}
+
+module.exports = { broadcast, broadcastChanel };

@@ -27,7 +27,8 @@ function handleAuthRoutes(req, res) {
                             email: user.email,
                             rol: user.rol,
                             nickname: user.nickname,
-                            img: user.img
+                            img: user.img,
+                            chanel: user.chanel
                         }
                     }));
                 } catch (err) {

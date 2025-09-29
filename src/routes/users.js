@@ -47,7 +47,8 @@ function handleUsersRoutes(req, res) {
                         password,
                         email,
                         rol: rol || "user",
-                        img: img || "https://i.pravatar.cc/150"
+                        img: img || "https://i.pravatar.cc/150",
+                      
                     };
                     users.push(newUser);
                     saveUsers(users);

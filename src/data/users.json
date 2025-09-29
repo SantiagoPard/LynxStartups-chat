@@ -5,8 +5,9 @@
         "password": "1234",
         "email": "admin@chat.com",
         "rol": "admin",
-        "nickname":"adminAs",
-        "img": "https://i.pravatar.cc/150?img=1"
+        "nickname": "adminAs",
+        "img": "https://i.pravatar.cc/150?img=1",
+        "chanel": "sala"
     },
     {
         "id": 2,
@@ -14,17 +15,18 @@
         "password": "abcd",
         "email": "user@chat.com",
         "rol": "user",
-        "nickname":"designUser",
-        "img": "https://i.pravatar.cc/150?img=2"
+        "nickname": "designUser",
+        "img": "https://i.pravatar.cc/150?img=2",
+        "chanel": "sala"
     },
     {
-        "id":"3",
-        "name":"Alex",
-        "password":"1",
-        "email":"a",
-        "rol":"a",
-        "nickname":"devAlex",
-        "img":"https://i.pravatar.cc/150?img=2"
+        "id": "3",
+        "name": "Alex",
+        "password": "1",
+        "email": "a",
+        "rol": "a",
+        "nickname": "devAlex",
+        "img": "https://i.pravatar.cc/150?img=2",
+        "chanel": "sala"
     }
-  
 ]

@@ -214,3 +214,98 @@ body {
   /* línea abajo por defecto (puedes ajustar color) */
   border-bottom: 1px solid var(--color-divider, #e6e6e6);
 }
+
+
+/* ====================================MODAL=========================== */
+
+
+/* ===== POPOVER / MODAL estilo cuadro ===== */
+.modal {
+  display: none;
+  position: fixed; /* IMPORTANT: fixed para posicionarlo respecto al viewport */
+  z-index: 3000;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  width: 280px;
+  max-width: calc(100vw - 24px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+}
+
+/* Flecha que apunta al botón */
+.modal-content::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-left: 1px solid rgba(0,0,0,0.06);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  transform-origin: center;
+  transform: translateX(-50%) rotate(45deg);
+  top: 100%; /* por defecto la flecha queda abajo; JS ajusta cuando el popover está arriba */
+  box-shadow: -4px 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Si la flecha debe apuntar hacia abajo (popover arriba del botón) añadiremos clase .arrow-top */
+.modal.arrow-top .modal-content::before {
+  top: auto;
+  bottom: -8px; /* pone la flecha por debajo del recuadro */
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Si la flecha debe apuntar hacia arriba (popover debajo del botón) */
+.modal.arrow-bottom .modal-content::before {
+  top: -8px;
+  bottom: auto;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Estilos internos */
+.modal-content label {
+  font-weight: 700;
+  color: #1e40af;
+}
+.modal-content input, .modal-content select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e6e9ee;
+  background: #f5f7fa;
+  box-sizing: border-box;
+}
+.btn-group {
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-top: 8px;
+}
+.btn-group button {
+  flex:1;
+  padding:8px 10px;
+  border-radius:8px;
+  border: none;
+  cursor: pointer;
+  background:#60a5fa;
+  color:white;
+}
+#cancelBtn { background:#93c5fd; color:#042a57; }
+
+/* Close small X */
+.close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size:18px;
+  color:#334155;
+  cursor:pointer;
+}
+
