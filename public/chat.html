@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp - Chat</title>
+    <link rel="stylesheet" href="./css/chatPc.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings_account_box" />
+
+
+</head>
+
+<body>
+    <div class="grid-container">
+
+        <div class="nameGroup">GRUPO 1</div>
+        <div class="nameChanel">
+            <p id="nameChanel">#🏠 | SALA</p>
+        </div>
+        <div>USUARIOS</div>
+        <div class="chanelsAndUser">
+            <div class="textChanels">
+                <span class="hola">
+                    canales de voz
+                </span>
+                <hr class="sepLineChanel">
+                <div class="chanels" id="chanels">
+                    <!-- se agrega data chanel para lo del resonsive -->
+                    <div class="chanel active" data-channel="sala" id="salaDiv">
+                        <button class="btnChanel">
+                            <span class="hash">#&nbsp;</span>
+                            <span class="bubble">🏠 | Sala</span>
+                        </button>
+                    </div>
+
+                    <div class="chanel" id="bugsDiv" data-channel="bugs">
+                        <button class="btnChanel">
+                            <span class="hash">#&nbsp;</span>
+                            <span class="bubble">🪲 | Bugs</span>
+                        </button>
+                    </div>
+                    <div class="chanel" id="desarrolloDiv" data-channel="desarrollo">
+                        <button class="btnChanel">
+                            <span class="hash">#&nbsp;</span>
+                            <span class="bubble">💻 | Desarrollo</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user" id="user">
+
+            </div>
+        </div>
+        <div class="chat-container" style="padding-top: 20px;">
+
+            <div id="chat-main" class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
+                <div id="messages" style="overflow-y: auto;" class="messages">
+
+                </div>
+
+            </div>
+
+
+            <form id="chatForm" class="chat-input">
+                <input type="text" id="messageInput" class="ph-center" placeholder="Enviar mensaje a sala"
+                    style="border-color: #E5E7EB; border-radius: 10px; padding: 4px; margin-bottom: -10px; width: 90%; min-height: 50px; max-height: 300px; resize: none; overflow: hidden; position: absolute; bottom: 20px;"
+                    autocomplete="off" required>
+                </input>
+            </form>
+        </div>
+        <div>
+            <div id="userSidebar" class="user-sidebar">
+                <div id="userList" style="display: flex; flex-direction: column; padding: 10px ;">
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MODAL -->
+        <div id="config-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+
+                <!-- Imagen SIEMPRE visible -->
+                <div id="userAvatar" style="text-align:center;">
+                    <img src="https://i.pravatar.cc/100" alt="avatar"
+                        style="width:100px; height:100px; border-radius:50%;">
+                </div>
+
+                <!-- Vista normal -->
+                <div id="userInfo" style="text-align:center;">
+                    <h3 id="userName">Among</h3>
+                    <p id="userAlias" style="color: gray;">@Andres</p>
+                </div>
+
+                <!-- Formulario para editar -->
+                <div id="editForm" style="display: none; margin-top: 16px;">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" value="">
+
+                    <label for="alias">Alias</label>
+                    <input type="text" id="alias" value="">
+                </div>
+
+                <!-- Botones -->
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button id="cancelBtn">Cerrar</button>
+                    <button id="editBtn">Editar</button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- MODAL DE EDICIÓN -->
+        <div id="edit-modal" class="modal hidden">
+            <div class="edit-modal-content">
+                <span class="close-edit-modal">&times;</span>
+
+                <div style="text-align:center;">
+                    <img src="https://i.pravatar.cc/100" alt="avatar"
+                        style="width:100px; height:100px; border-radius:50%; margin-bottom: 10px;">
+                </div>
+
+                <div class="conten-inputs">
+                    <label for="editName">Nombre</label>
+                    <input type="text" id="editName" value="">
+
+                    <label for="editAlias">Alias</label>
+                    <input type="text" id="editAlias" value="">
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button id="saveBtn">Editar</button>
+                    <button id="cancelEditBtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script type="module" src="./js/chat.js"></script>
+</body>
+
+
+
+
+</html>
