@@ -15,15 +15,16 @@ export function connect(user) {
     });
 
     socket.addEventListener("message", (event) => {
-   
+
         const data = JSON.parse(event.data);
 
         switch (data.type) {
             case "chat":
-                addMessage(data.user, data.text,data.chanel , data.user.id === user.id);
+                // console.log(data.user)
+                addMessage(data.user, data.text, data.chanel, data.user.id === user.id);
                 break;
             case "chanel":
-                addHistorial(data.chanel)
+                addHistorial(data.chanel, data.historial)
                 break;
             case "system":
                 addSystemMessage(data.text);
@@ -48,12 +49,14 @@ export function sendMessage(user, text, chanel) {
     }));
 }
 
-export function sendMessageChanel(chanel) {
+export function sendMessageChanel(user, chanel) {
+    
     console.log(chanel)
     if (!socket || socket.readyState !== WebSocket.OPEN) return;
 
     socket.send(JSON.stringify({
+        user: user,
         type: "chanel",
-        chanel
+        chanel,
     }));
 }

@@ -1,69 +1,25 @@
 const messagesDiv = document.getElementById("messages");
+// chat-main
+const chatMainDiv = document.getElementById("chat-main");
+
 const userList = document.getElementById("userList");
 
-// function fixChatHeight() {
-//     document.querySelector(".chat-container").style.height = window.innerHeight + "px";
-// }
-// window.addEventListener("resize", fixChatHeight);
-// fixChatHeight();
-
-//cod del profe
-// export function addMessage(user, text, isSelf = false) {
-//     const msgEl = document.createElement("div");
-//     msgEl.classList.add("message");
-//     if (isSelf) msgEl.classList.add("self");
-//     msgEl.innerHTML = `<strong>${user}: </strong>${text}`;
-//     messagesDiv.appendChild(msgEl);
-//     messagesDiv.scrollTop = messagesDiv.scrollHeight;
-// }
-
-//cod agregado
-
-let messageBodySala = [];
-let messageBodyBugs = [];
-let messageBodyDev = [];
-
-
-export function addMessage(user, text, chanel, isSelf = false) {
+export function addMessage(user, text) {
     const msgEl = document.createElement("div");
-
-    console.log(chanel)
-    let registroMessage =
-    {
-        "userName": user.name,
-        "rol": user.rol,
-        "nickname": user.nickname,
-        "message": text,
-    }
-    switch (chanel) {
-        case "sala":
-            messageBodySala.push(registroMessage)
-            break;
-        case "bugs":
-            messageBodyBugs.push(registroMessage)
-            break;
-        case "desarrollo":
-            messageBodyDev.push(registroMessage)
-            break;
-    }
-
-    console.log(messageBodySala);
-
 
     msgEl.classList.add("message");
     console.log(user)
-    //  if (isSelf) msgEl.classList.add("self");
     const hr = document.createElement("hr");
     hr.classList.add("sepLine");
 
     msgEl.innerHTML = `
     
-    <img style="width: 64px; height: 64px;" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
+    <img class="imgChatUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
 
-    <div class="messageText"  style="display: flex; flex-direction: column; padding-left:10px;">
+    <div class="messageText">
         <p><span class="userChatName">${user.name}</span><span class="nickName">@${user.nickname}</span><span class="rol">${user.rol}</span></p>
 
-        <p style="padding-left: 24px; color: #000;">
+        <p class="pMessageText">
             ${text}
         </p>
 
@@ -73,29 +29,38 @@ export function addMessage(user, text, chanel, isSelf = false) {
 
     messagesDiv.appendChild(msgEl);
     messagesDiv.appendChild(hr);
+
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
+    document.getElementById("chat-main").scrollTop = document.getElementById("chat-main").scrollHeight
+
+    console.log(chatMainDiv.scrollHeight)
 
 }
 
-export function addHistorial(chanel) {
+export function addHistorial(chanel, message) {
     // messagesDiv.innerHTML = "";
-
+    console.log(chanel)
     switch (chanel) {
         case "sala":
-            addHistoricalMessages(messageBodySala)
+            document.getElementById("nameChanel").innerText = "#🏠 | SALA"
+            addHistoricalMessages(message)
             break;
         case "bugs":
-            addHistoricalMessages(messageBodyBugs)
+            document.getElementById("nameChanel").innerText = "#🪲 | Bugs"
+            addHistoricalMessages(message)
             break;
         case "desarrollo":
-            addHistoricalMessages(messageBodyDev)
+            document.getElementById("nameChanel").innerText = "#💻 | Bugs"
+
+            addHistoricalMessages(message)
             break;
     }
 
 }
 
 function addHistoricalMessages(messages) {
+
     messagesDiv.innerHTML = ""
     messages.forEach(u => {
         const msgEl = document.createElement("div");
@@ -104,13 +69,13 @@ function addHistoricalMessages(messages) {
         hr.classList.add("sepLine");
         msgEl.innerHTML = `
     
-    <img style="width: 64px; height: 64px;" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
+    <img class="imgChatUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
 
-    <div class="messageText"  style="display: flex; flex-direction: column; padding-left:10px;">
+    <div class="messageText">
         <p><span class="userChatName">${u.userName}</span><span class="nickName">@${u.nickname}</span><span class="rol">${u.rol}</span></p>
 
-        <p style="padding-left: 24px; color: #000;">
-            ${u.message}
+        <p class="pMessageText">
+            ${u.text}
         </p>
 
     </div>
@@ -124,13 +89,58 @@ function addHistoricalMessages(messages) {
 }
 //fin cod agregado 
 
+export function showConfigModal(user) {
+    const configModal = document.getElementById("config-modal");
+    const editModal = document.getElementById("edit-modal");
+    const closeModalBtn = configModal.querySelector(".close-modal");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const editBtn = document.getElementById("editBtn");
+
+    // Rellenar campos del modal de vista
+    if (user) {
+        configModal.querySelector("h3").textContent = user.name || "Sin nombre";
+        configModal.querySelector("p").textContent = "@" + (user.nickname || "Sin alias");
+
+        // También rellenar el modal de edición por si lo abre después
+        document.getElementById("editName").value = user.name || "";
+        document.getElementById("editAlias").value = user.nickname || "";
+    }
+
+    configModal.classList.remove("hidden");
+
+    closeModalBtn.onclick = () => configModal.classList.add("hidden");
+    cancelBtn.onclick = () => configModal.classList.add("hidden");
+
+    editBtn.onclick = () => {
+        configModal.classList.add("hidden");
+        editModal.classList.remove("hidden");
+    };
+
+    // Cierre del modal de edición
+    document.querySelector(".close-edit-modal").onclick = () => editModal.classList.add("hidden");
+    document.getElementById("cancelEditBtn").onclick = () => editModal.classList.add("hidden");
+
+    // Guardar
+    document.getElementById("saveBtn").onclick = () => {
+        const name = document.getElementById("editName").value;
+        const alias = document.getElementById("editAlias").value;
+
+        console.log("Guardar:", name, alias);
+
+
+        editModal.classList.add("hidden");
+    };
+}
+
+
+
 
 export function addSystemMessage(text) {
-    console.log(text)
+    // console.log(text)
 }
 
 export function updateUserList(users) {
-    console.log(users)
+    // console.log(users)
     userList.innerHTML = "";
     users.forEach(u => {
         const hr = document.createElement("hr");
@@ -139,11 +149,11 @@ export function updateUserList(users) {
         div.classList.add("user-item");
 
         div.innerHTML = `
-    <img style="width: 50px; height: 50px;" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
-    <div style="display: flex; flex-direction: column; justify-content: center;  width: 100%; padding: 0px 0px 0px 6px;">
+    <img class="imgUserList" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
+    <div class="userListText">
         <p><span class="userChatName">${u.name}</span><span class="nickName"> @${u.nickname}</span><span></p>
         
-        <p class="messageText"><span class="${u.connected ? "buttonOnline" : "buttonOffline"}"></span>${u.connected ? "En linea" : "Desconectado"}</p>
+        <p class="pListUser"><span class="${u.connected ? "buttonOnline" : "buttonOffline"}"></span>${u.connected ? "En linea" : "Desconectado"}</p>
     
     </div>
 

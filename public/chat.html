@@ -5,113 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatApp - Chat</title>
-    <link rel="stylesheet" href="./css/discord.css">
-    <!-- <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="./css/chat.css" />
-    <link rel="stylesheet" href="./css/sidebar.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /> -->
-    <style>
-        .self {
-            display: flex;
-            flex-direction: row
-        }
+    <link rel="stylesheet" href="./css/chatPc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings_account_box" />
 
-        .messages {
-            display: flex;
-            flex-direction: column;
-            padding: 0px 30px 30px 30px;
-        }
-
-        .message {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-
-        }
-        .messageText{
-            margin-left: 6px; 
-            margin-top: 2px;
-            overflow-wrap: break-word;
-            word-break: break-word;
-            text-align: justify;
-        }
-
-        .sepLine {
-
-            margin-top: 6px;
-            margin-bottom: 20px;
-        }
-
-        .sepLineUsers {
-            margin-top: 6px;
-            margin-bottom: 6px;
-        }
-
-        .nickName {
-            color: #9CA3AF;
-            padding: 0px 4px;
-        }
-
-        .rol {
-            background-color: #FF7057;
-            font-size: 12px;
-            padding: 0px 4px;
-            border: 1px solid transparent;
-            border-radius: 10px;
-            color: #fff;
-            ;
-        }
-
-        .userChatName {
-            color: #2563EB;
-        }
-
-        .messageText {
-            position: relative;
-            width: 100%;
-            overflow-wrap: break-word;
-        }
-
-        .user-item {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .buttonOffline {
-            display: inline-block;
-            width: 14px;
-            margin-right: 4px;
-            height: 14px;
-            border: 1px solid red;
-            border-radius: 10px;
-            background-color: red;
-        }
-
-        .user-sidebar {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .chat-input {
-            display: flex;
-            justify-content: center;
-            height: 100%;
-            position: relative;
-        }
-
-        .btnChanel,
-        input[type="submit"],
-        input[type="reset"] {
-            background: none;
-            color: inherit;
-            border: none;
-            padding: 0;
-            font: inherit;
-            cursor: pointer;
-            outline: inherit;
-        }
-    </style>
+  
 </head>
 
 <body>
@@ -119,7 +16,7 @@
 
         <div class="nameGroup">GRUPO 1</div>
         <div class="nameChanel">
-            <p>#🏠 | SALA</p>
+            <p id="nameChanel">#🏠 | SALA</p>
         </div>
         <div>USUARIOS</div>
         <div class="chanelsAndUser">
@@ -127,47 +24,39 @@
                 <span class="hola">
                     canales de voz
                 </span>
-                <hr style="position: relative; margin-top: -8px; border: 1px solid #000; width: 100%;  z-index: -1;">
+                <hr class="sepLineChanel">
                 <div class="chanels" id="chanels">
                     <div class="chanel active" id="salaDiv">
                         <button class="btnChanel"
-                            style="margin-left: 4px; width: 100%; display: flex; flex-direction: row; align-items: center;" >
+                        >
                             <span class="hash">#&nbsp;</span>
-                            <span style="text-align: start;" class="bubble">🏠 | Sala</span>
+                            <span class="bubble">🏠 | Sala</span>
                         </button>
                     </div>
                     <div class="chanel" id="bugsDiv">
                         <button class="btnChanel"
-                            style="margin-left: 4px; width: 100%; display: flex; flex-direction: row; align-items: center;">
+                           >
                             <span class="hash">#&nbsp;</span>
-                            <span class="bubble" style="text-align: start;">🪲 | Bugs</span>
+                            <span class="bubble" >🪲 | Bugs</span>
                         </button>
                     </div>
                     <div class="chanel" id="desarrolloDiv">
-                        <button class="btnChanel"
-                            style="margin-left: 4px; width: 100%; display: flex; flex-direction: row; align-items: center;">
+                        <button class="btnChanel">
                             <span class="hash">#&nbsp;</span>
-                            <span class="bubble" style="text-align: start;">💻 | Desarrollo</span>
+                            <span class="bubble" >💻 | Desarrollo</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="user">
-                <!-- <img style="width: 50px; height: 50px;" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
-                    alt="">
-                <p style="display: flex; flex-direction: column; margin-left: -8px; font-size: 16px;">nombre <span
-                        style="margin-left: 10px; color: #9CA3AF;">@hola</span></p>
-                <button>cofig</button> -->
+            <div class="user" id="user">
+
             </div>
         </div>
         <div class="chat-container" style="padding-top: 20px;">
 
-            <div class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
-                <div id="messages" class="messages">
-                    <!-- <div class="message">
-
-                    </div> -->
+            <div id="chat-main" class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
+                <div id="messages" style="overflow-y: auto;" class="messages">
 
                 </div>
 
@@ -182,91 +71,84 @@
             </form>
         </div>
         <div>
-            <div id="userSidebar" class="user-sidebar" >
+            <div id="userSidebar" class="user-sidebar">
                 <div id="userList" style="display: flex; flex-direction: column; padding: 10px ;">
 
 
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- <div class="layout"> -->
-    <!-- Para los canales -->
+<!-- MODAL -->
+        <div id="config-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
 
-    <!-- <aside class="sidebar-left">
-            <h1 class="tittle">Canales de texto</h1>
-            <ul>
-                <li>#Sala</li>
-                <li>#Bugs</li>
-                <li>#Desarrollo</li>
-            </ul>
-        </aside> -->
-
-
-
-    <!-- <div class="chat-container">
-            <header class="chat-header"> -->
-    <!-- <h2 id="chat-username">Bienvenido</h2> -->
-    <!-- <h1 class="tittle">#Sala</h1>
-                <div class="header-actions">
-                    <button id="usersToggle" class="icon-btn"><i class="fa-solid fa-users"></i></button>
-                    <button id="logoutBtn" class="icon-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <!-- Imagen SIEMPRE visible -->
+                <div id="userAvatar" style="text-align:center;">
+                    <img src="https://i.pravatar.cc/100" alt="avatar"
+                        style="width:100px; height:100px; border-radius:50%;">
                 </div>
-            </header> -->
 
-    <!-- <main class="chat-main">
-                <div id="messages" class="messages"></div>
-            </main> -->
+                <!-- Vista normal -->
+                <div id="userInfo" style="text-align:center;">
+                    <h3 id="userName">Among</h3>
+                    <p id="userAlias" style="color: gray;">@Andres</p>
+                </div>
 
-    <!-- <form id="chatForm" class="chat-input">
-                <input type="text" id="messageInput" placeholder="Escribe un mensaje..." autocomplete="off" required />
-                <button type="submit" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-            </form>
-        </div> -->
+                <!-- Formulario para editar -->
+                <div id="editForm" style="display: none; margin-top: 16px;">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" value="">
 
-    <!-- Sidebar de usuarios -->
-    <!-- Así estba antes para que sea flotante o este oculto -->
-    <!-- <aside id="userSidebar" class="user-sidebar">
-            <div class="sidebar-header">
-                <h3>Usuarios conectados</h3>
-                <button id="closeSidebar" class="icon-btn close-btn">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                    <label for="alias">Alias</label>
+                    <input type="text" id="alias" value="">
+                </div>
+
+                <!-- Botones -->
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button id="cancelBtn">Cerrar</button>
+                    <button id="editBtn">Editar</button>
+                    
+                </div>
             </div>
-            <ul id="userList"> -->
-    <!-- usuarios dinámicos -->
-    <!-- </ul>
-        </aside> -->
-
-    <!-- Panel derecho -->
-
-    <!-- <aside id="userSidebar" class="sidebar-right">
-            <h1 class="tittle">Usuarios</h1>
-            <ul id="userList"></ul> -->
-    <!-- usuarios dinámicos -->
-    <!-- </aside> -->
+        </div>
 
 
 
+        <!-- MODAL DE EDICIÓN -->
+        <div id="edit-modal" class="modal hidden">
+            <div class="edit-modal-content">
+                <span class="close-edit-modal">&times;</span>
+
+                <div style="text-align:center;">
+                    <img src="https://i.pravatar.cc/100" alt="avatar"
+                        style="width:100px; height:100px; border-radius:50%; margin-bottom: 10px;">
+                </div>
+
+                <div class="conten-inputs" >
+                    <label for="editName">Nombre</label>
+                    <input type="text" id="editName" value="">
+
+                    <label for="editAlias">Alias</label>
+                    <input type="text" id="editAlias" value="">
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button id="saveBtn">Editar</button>
+                    <button id="cancelEditBtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
 
 
-    <!-- </div> -->
-
+    </div>
 
     <script type="module" src="./js/chat.js"></script>
 </body>
 
 
-<!-- <script>
-    function resizeUp(el) {
-        el.style.height = "auto";
-        el.style.height = el.scrollHeight + "px";
-    }
-</script>
 
-<script type="module" src="./js/chat.js"></script>
-</script> -->
 
 </html>
