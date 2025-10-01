@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatApp - Chat</title>
     <link rel="stylesheet" href="./css/chatPc.css">
+    <link rel="stylesheet" href="./css/chatMovil.css">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings_account_box" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=chevron_right" />
-
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
 </head>
 
 <body>
@@ -56,14 +55,14 @@
         <div class="chat-container" style="padding-top: 20px;">
 
             <div id="chat-main" class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
-                <div id="messages" style="overflow-y: auto;" class="messages">
+             <div id="messages" style="overflow-y: auto;" class="messages">
 
                 </div>
 
             </div>
 
 
-            <form id="chatForm" class="chat-input">
+                <form id="chatForm" class="chat-input">
                 <input type="text" id="messageInput" class="ph-center" placeholder="Enviar mensaje a sala"
                     style="border-color: #E5E7EB; border-radius: 10px; padding: 4px; margin-bottom: -10px; width: 90%; min-height: 50px; max-height: 300px; resize: none; overflow: hidden; position: absolute; bottom: 20px;"
                     autocomplete="off" required>
@@ -151,7 +150,7 @@
     <div class="containerMovil">
 
         <!-- PANEL CHANNELS (Pestaña 1) - sin appbar -->
-        <div id="panelChannels" class="mobile-panel">
+        <div id="panelChannels" class="mobile-panel hidden">
             <div class="chanelsAndUser">
                 <div class="textChanels">
                     <span class="hola">canales de voz</span>
@@ -196,17 +195,17 @@
 
             <div class="chat-container" style="padding-top: 20px;">
 
-                <div id="chat-main" class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
-                    <div id="messages" style="overflow-y: auto;" class="messages">
+                <div id="chat-main-movil" class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
+                    <div id="messagesMovil" style="overflow-y: auto;" class="messages">
 
                     </div>
 
                 </div>
 
 
-                <form id="chatForm" class="chat-input">
+                <form id="chatFormMovil" class="chat-input">
                     <div class="input-wrapper">
-                        <input type="text" id="messageInput" class="ph-center" placeholder="Enviar mensaje a sala"
+                        <input type="text" id="messageInputMovil" class="ph-center" placeholder="Enviar mensaje a sala"
                             autocomplete="off" required>
 
                     </div>

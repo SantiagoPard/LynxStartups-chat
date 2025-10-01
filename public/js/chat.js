@@ -9,23 +9,25 @@ if (!user) redirectToLogin();
 // DOM
 const chatForm = document.getElementById("chatForm");
 const messageInput = document.getElementById("messageInput");
+const chatFormMovil = document.getElementById("chatFormMovil");
+const messageInputMovil = document.getElementById("messageInputMovil");
 const channelSala = document.getElementById("salaDiv");
 const channelBugs = document.getElementById("bugsDiv");
 const channelDev = document.getElementById("desarrolloDiv");
 
 
 let typeMessage = "sala";
-//const channelsForm = document.getElementById("channels")
-// const logoutBtn = document.getElementById("logoutBtn");
 
 // Conectar al WebSocket
 connect(user);
 
 //chat ui
 window.onload = () => {
+  
   setTimeout(() => {
     sendMessageChanel(user, "sala");
   }, "400");
+
   document.querySelector("#user").innerHTML = `
   <img class="imgUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
   <p class="contentUser">${user.name} <span class="nickName">@${user.nickname}</span></p>
@@ -39,6 +41,17 @@ window.onload = () => {
 };
 
 // Eventos
+window.addEventListener('resize', () => {
+  if(window.innerWidth> 768){
+      setTimeout(() => {
+      sendMessageChanel(user, typeMessage);
+    }, "400");
+  }
+
+})
+
+
+
 chatForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const text = messageInput.value.trim();
@@ -46,11 +59,21 @@ chatForm.addEventListener("submit", function (e) {
   if (text) {
     sendMessage(user, text, typeMessage);
     messageInput.value = "";
-    //  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-    // console.log(messagesDiv.scrollHeight)
   }
 });
+
+chatFormMovil.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const text = messageInputMovil.value.trim();
+
+  if (text) {
+    sendMessage(user, text, typeMessage);
+    messageInputMovil.value = "";
+  }
+});
+
+
 
 channelSala.addEventListener("click", () => {
   typeMessage = "sala";

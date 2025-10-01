@@ -1,6 +1,8 @@
 // chatMovi.js (reemplaza todo)
 import { sendMessage, sendMessageChanel } from "./web/chatSocket.js";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 document.addEventListener("DOMContentLoaded", () => {
   function showPanel(panelId) {
     // ahora incluye panelTU
@@ -15,16 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // funciones accesibles desde HTML
   window.goCanales = () => showPanel("panelChannels");
-  window.gotoTu = () => showPanel("panelTU"); 
-  window.gotoEditarP = () => showPanel("panelEditar"); 
-  window.goConectados = ()=> showPanel("panelUsers");
+  window.gotoTu = () => showPanel("panelTU");
+  window.gotoEditarP = () => showPanel("panelEditar");
+  window.goConectados = () => showPanel("panelUsers");
 
   const mobileRoot = document.querySelector(".containerMovil");
   if (!mobileRoot) return;
 
   const channelsMobile = mobileRoot.querySelectorAll("#chanelsMobile .chanel");
   const roomTitleMobile = document.getElementById("roomTitleMobile");
-  // IDs móviles (asegúrate que el HTML tenga estos)
+  // IDs móviles
   const messageInputMobile = document.getElementById("messageInputMobile") || document.getElementById("messageInput");
   const chatFormMobile = document.getElementById("chatFormMobile") || document.getElementById("chatForm");
   const messagesMobileInner = document.getElementById("messagesMobileInner");
@@ -65,6 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
       userObj.chanel = type;
       localStorage.setItem("user", JSON.stringify(userObj));
 
+      setTimeout(() => {
+      sendMessageChanel(user, mobileType);
+    }, "400");
+
+    changeChanel(mobileType);
+  
+  
+    
+
       try { sendMessageChanel(userObj, type); } catch (e) { console.warn("sendMessageChanel error", e); }
 
       showPanel("panelChat");
@@ -74,8 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+function changeChanel(mobileType) {
+  let chanel = document.getElementById(`${mobileType}Div`);
+
+  document.querySelector(".active > button").removeAttribute("disabled", "");
+
+  document.querySelector(".active").classList.remove("active");
+
+  document
+    .querySelector(`#${mobileType}Div > button`)
+    .setAttribute("disabled", "");
+
+  chanel.classList.add("active");
+}
+
 
 
   setActiveChannelVisual(mobileType);
-  showPanel("panelChannels");
+  showPanel("panelChat");
 });

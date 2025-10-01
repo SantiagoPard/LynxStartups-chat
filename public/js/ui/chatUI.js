@@ -1,6 +1,9 @@
 const messagesDiv = document.getElementById("messages");
+const messagesDivMovil = document.getElementById("messagesMovil");
 // chat-main
 const chatMainDiv = document.getElementById("chat-main");
+
+const chatMainDivMovile = document.getElementById("chat-main-movil");
 
 const userList = document.getElementById("userList");
 
@@ -10,7 +13,7 @@ export function addMessage(user, text) {
     const msgEl = document.createElement("div");
 
     msgEl.classList.add("message");
-    console.log(user)
+
     const hr = document.createElement("hr");
     hr.classList.add("sepLine");
 
@@ -29,31 +32,42 @@ export function addMessage(user, text) {
 
     `;
 
-    messagesDiv.appendChild(msgEl);
-    messagesDiv.appendChild(hr);
+        if (window.innerWidth < 768) {
+            
+            messagesDivMovil.appendChild(msgEl)
+            messagesDivMovil.appendChild(hr)
+            messagesDivMovil.scrollTop = messagesDivMovil.scrollHeight;
+            chatMainDivMovile.scrollTop = chatMainDivMovile.scrollHeight
+        } else {
+            messagesDiv.appendChild(msgEl);
+            messagesDiv.appendChild(hr);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            chatMainDiv.scrollTop = chatMainDiv.scrollHeight
+        }
 
-    document.getElementById("chat-main").scrollTop = document.getElementById("chat-main").scrollHeight
 
-    console.log(chatMainDiv.scrollHeight)
+    // messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+
+
 
 }
 
 export function addHistorial(chanel, message) {
     // messagesDiv.innerHTML = "";
-    console.log(chanel)
+    // console.log(chanel)
     switch (chanel) {
         case "sala":
             document.getElementById("nameChanel").innerText = "#🏠 | SALA"
             addHistoricalMessages(message)
             break;
         case "bugs":
-            document.getElementById("nameChanel").innerText = "#🪲 | Bugs"
+            document.getElementById("nameChanel").innerText = "#🪲 | BUGS"
             addHistoricalMessages(message)
             break;
         case "desarrollo":
-            document.getElementById("nameChanel").innerText = "#💻 | Bugs"
+            document.getElementById("nameChanel").innerText = "#💻 | DESARROLLO"
 
             addHistoricalMessages(message)
             break;
@@ -64,6 +78,7 @@ export function addHistorial(chanel, message) {
 function addHistoricalMessages(messages) {
 
     messagesDiv.innerHTML = ""
+    messagesDivMovil.innerHTML = ""
     messages.forEach(u => {
         const msgEl = document.createElement("div");
         msgEl.classList.add("message");
@@ -84,11 +99,26 @@ function addHistoricalMessages(messages) {
 
     `;
 
-        messagesDiv.appendChild(msgEl);
-        messagesDiv.appendChild(hr);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+
+        if (window.innerWidth < 768) {
+            messagesDivMovil.appendChild(msgEl)
+            messagesDivMovil.appendChild(hr)
+            messagesDivMovil.scrollTop = messagesDivMovil.scrollHeight;
+        } else {
+            messagesDiv.appendChild(msgEl);
+            messagesDiv.appendChild(hr);
+
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        }
+
+
+
     })
 }
+
+
 //fin cod agregado 
 
 export function showConfigModal(user) {
@@ -138,11 +168,10 @@ export function showConfigModal(user) {
 
 
 export function addSystemMessage(text) {
-    // console.log(text)
 }
 
 export function updateUserList(users) {
-    // console.log(users)
+
     userList.innerHTML = "";
     users.forEach(u => {
         const hr = document.createElement("hr");
@@ -164,6 +193,8 @@ export function updateUserList(users) {
 
         userList.appendChild(div);
         userList.appendChild(hr)
+        userListMovil.appendChild(div)
+        userListMovil.appendChild(hr)
     });
 }
 

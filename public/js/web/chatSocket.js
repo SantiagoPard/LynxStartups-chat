@@ -20,7 +20,6 @@ export function connect(user) {
 
         switch (data.type) {
             case "chat":
-                // console.log(data.user)
                 addMessage(data.user, data.text, data.chanel, data.user.id === user.id);
                 break;
             case "chanel":
@@ -51,7 +50,6 @@ export function sendMessage(user, text, chanel) {
 
 export function sendMessageChanel(user, chanel) {
     
-    console.log(chanel)
     if (!socket || socket.readyState !== WebSocket.OPEN) return;
 
     socket.send(JSON.stringify({
