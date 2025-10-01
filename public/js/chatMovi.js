@@ -3,7 +3,12 @@ import { sendMessage, sendMessageChanel } from "./web/chatSocket.js";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+
   function showPanel(panelId) {
     // ahora incluye panelTU
     const panels = ["panelChannels", "panelChat", "panelUsers", "panelTU", "panelEditar"];
@@ -104,3 +109,4 @@ function changeChanel(mobileType) {
   setActiveChannelVisual(mobileType);
   showPanel("panelChat");
 });
+

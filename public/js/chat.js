@@ -14,7 +14,9 @@ const messageInputMovil = document.getElementById("messageInputMovil");
 const channelSala = document.getElementById("salaDiv");
 const channelBugs = document.getElementById("bugsDiv");
 const channelDev = document.getElementById("desarrolloDiv");
-
+const channelSalaMovil = document.getElementById("salaDiv-mobile");
+const channelBugsMovil = document.getElementById("bugsDiv-mobile");
+const channelDevMovil = document.getElementById("desarrolloDiv-mobile");
 
 let typeMessage = "sala";
 
@@ -23,7 +25,7 @@ connect(user);
 
 //chat ui
 window.onload = () => {
-  
+
   setTimeout(() => {
     sendMessageChanel(user, "sala");
   }, "400");
@@ -42,15 +44,30 @@ window.onload = () => {
 
 // Eventos
 window.addEventListener('resize', () => {
-  if(window.innerWidth > 768){
-      setTimeout(() => {
+  if (window.innerWidth > 768) {
+    setTimeout(() => {
+      console.log(typeMessage)
       sendMessageChanel(user, typeMessage);
     }, "400");
     updateUsers()
-  }else{
+  } else {
     updateUsers()
   }
 
+})
+
+
+channelSalaMovil.addEventListener("click", () => {
+  typeMessage = "sala"
+  console.log("hola")
+});
+channelBugsMovil.addEventListener("click", () => {
+  typeMessage = "bugs"
+  console.log("como")
+});
+channelDevMovil.addEventListener("click", () => {
+  typeMessage = "desarrollo"
+  console.log("estas")
 })
 
 
@@ -75,6 +92,9 @@ chatFormMovil.addEventListener("submit", function (e) {
     messageInputMovil.value = "";
   }
 });
+
+
+
 
 
 
