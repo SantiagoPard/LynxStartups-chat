@@ -693,7 +693,7 @@ input[type="reset"] {
         display: none;
     }
 
-    /* Mensajes mobile: restamos appbar + input + bottom-nav */
+   
     #messagesMobileInner {
         padding: 12px;
         height: calc(100vh - var(--appbar-height) - var(--input-area-height) - var(--bottom-nav-height) - 12px);
@@ -701,7 +701,7 @@ input[type="reset"] {
         box-sizing: border-box;
     }
 
-    /* si el panel no tiene appbar (ej. panelChannels), reserva espacio inferior para que la lista no quede oculta */
+   
     #panelChannels #chanelsMobile {
         padding-bottom: calc(var(--bottom-nav-height) + 20px);
     }
@@ -733,7 +733,7 @@ input[type="reset"] {
         box-sizing: border-box;
     }
 
-    /* aseguramos bottom-nav visible y encima del contenido */
+    /*  bottom-nav visible y encima del contenido */
     .bottom-nav {
         position: fixed;
         left: 0;
@@ -749,7 +749,7 @@ input[type="reset"] {
         z-index: 50;
     }
 
-    /* Ajustes para que .chanels se vea correctamente en channels panel */
+    
     #chanelsMobile {
         padding: 12px;
     }
@@ -758,12 +758,12 @@ input[type="reset"] {
         width: 100%;
     }
 
-    /* evitar que desktop interfiera */
+ 
     .grid-container {
         display: none !important;
     }
 
-    /* algo de padding-bottom general para evitar que contenido quede tapado por input/bottom-nav */
+
     .content {
         padding-bottom: calc(var(--bottom-nav-height) + var(--input-area-height) + 24px);
     }
