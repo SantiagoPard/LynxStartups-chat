@@ -4,6 +4,8 @@ const chatMainDiv = document.getElementById("chat-main");
 
 const userList = document.getElementById("userList");
 
+const userListMovil = document.getElementById("userListMovil");
+
 export function addMessage(user, text) {
     const msgEl = document.createElement("div");
 
@@ -180,3 +182,4 @@ export function clearUser() {
 export function redirectToLogin() {
     window.location.href = "/login.html";
 }
+

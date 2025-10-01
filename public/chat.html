@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="./css/chatPc.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings_account_box" />
-
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=chevron_right" />
 
 </head>
 
@@ -204,10 +205,15 @@
 
 
                 <form id="chatForm" class="chat-input">
-                    <input type="text" id="messageInput" class="ph-center" placeholder="Enviar mensaje a sala"
-                        style="border-color: #E5E7EB; border-radius: 10px; padding: 4px; margin-bottom: -10px; width: 90%; min-height: 50px; max-height: 300px; resize: none; overflow: hidden; position: absolute; bottom: 20px;"
-                        autocomplete="off" required>
-                    </input>
+                    <div class="input-wrapper">
+                        <input type="text" id="messageInput" class="ph-center" placeholder="Enviar mensaje a sala"
+                            autocomplete="off" required>
+
+                    </div>
+                    <button type="submit" class="send-btn">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+
                 </form>
             </div>
 
@@ -227,14 +233,14 @@
                 <div style="width:36px"></div>
             </div>
 
-            <main class="content content-usuario">
-                <div>
-                    <div id="userSidebar" class="user-sidebar">
-                        <div id="userList" style="display: flex; flex-direction: column; padding: 10px ;">
-                        </div>
+            <div>
+                <div id="userSidebarMovil" class="user-sidebar">
+                    <div id="userListMovil" style="display: flex; flex-direction: column; padding: 10px ;">
+
+
                     </div>
                 </div>
-            </main>
+            </div>
 
             <footer>
                 <div class="bottom-nav">
