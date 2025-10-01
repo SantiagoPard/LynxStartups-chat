@@ -7,6 +7,7 @@
 }
 
 .grid-container {
+
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -306,7 +307,8 @@
     align-items: center;
 }
 
-.btnChanel,#configBtn,
+.btnChanel,
+#configBtn,
 input[type="submit"],
 input[type="reset"] {
     background: none;
@@ -442,9 +444,326 @@ input[type="reset"] {
 } */
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+/*  */
+/* --- Responsive: pantallas pequeñas --- */
+
+
+.containerMovil{
+    display: none ;
+}
+
+/* ---------- MOBILE BEHAVIOR: show one panel at a time ---------- */
+@media (max-width: 768px) {
+
+    :root {
+        --azul: #2563EB;
+        --azulclaro: #3B82F6;
+        --bg: #f6f7fb;
+        --blanco: #fff;
+        --radius: 14px;
+        --grisOSC: #dad9d9;
+        --grisCla: #F2F4F7;
+
+        /* VARIABLES DE LAYOUT MÓVIL (ajusta si es necesario) */
+        --appbar-height: 56px;
+        --bottom-nav-height: 72px;   /* ajustar si tu bottom-nav mide distinto */
+        --input-area-height: 64px;    /* altura reservada para el input (incluye padding) */
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Inter, system-ui, sans-serif;
+        background: var(--bg);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .containerMovil {
+        display: block;
+        height: 100vh;
+        overflow: hidden;
+        position: relative; /* importante para que fixed se comporte bien */
+    }
+
+    .Contitulo {
+        text-align: center;
+        border-bottom: 1px solid #000;
+        line-height: 0.1em;
+        margin: 35px 0 20px;
+    }
+
+    .txtTitulo {
+        background: #f6f7fb;
+        padding: 0 10px;
+    }
+
+    /* Content */
+    .channel-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .channel {
+        background: var(--blanco);
+        padding: 12px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    /* Bottom nav (usamos la variable para la altura) */
+    .bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: var(--bottom-nav-height);
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        background-color: var(--grisOSC);
+        padding: 12px 22px; /* padding interno */
+        z-index: 40;
+        box-sizing: border-box;
+    }
+
+    .btn-circle {
+        pointer-events: auto;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--blanco);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    .btn-secondary {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--azul);
+        color: #fff;
+    }
+
+    .channel .hash {
+        color: var(--azul);
+        font-weight: 700;
+        margin-right: 6px;
+    }
+
+    /* Chat html para móvil */
+    .content {
+        flex: 1;
+        overflow: auto;
+        padding: 16px;
+    }
+
+    .messages {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .message {
+        background: var(--blanco);
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+    }
+
+    .message.self {
+        margin-left: auto;
+        background: var(--azul);
+        color: #fff;
+    }
+
+    .appbar {
+        height: var(--appbar-height);
+        background-color: var(--grisOSC);
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+        z-index: 50;
+    }
+
+    .appbar button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .title {
+        flex: 1;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--azul);
+    }
+
+    .content-usuario {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10%;
+    }
+
+    .content-editar {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: var(--azul);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .content-editar input {
+        padding: 15px;
+        border-radius: 10px;
+        border: #dad9d9;
+        background: var(--grisCla);
+    }
+
+    .content-editar label {
+        font-size: 20px;
+    }
+
+    .content-editar button {
+        background-color: #3B82F6;
+        padding: 15px 60px;
+        border-radius: 25px;
+        border: none;
+        color: var(--blanco);
+    }
+
+    #editBtn {
+        background-color: var(--azulclaro);
+        padding: 15px 60px;
+        border-radius: 25px;
+        border: none;
+        color: var(--blanco);
+    }
+
+    #userInfo h3,
+    #userInfo p {
+        margin: 0;
+    }
+
+    /* Mobile panels (tus paneles: channels / chat / users) */
+    .mobile-panel {
+        display: block;
+        height: 100vh;
+        box-sizing: border-box;
+        background: var(--bg);
+    }
+
+    .mobile-panel.hidden {
+        display: none;
+    }
+
+    /* Mensajes mobile: restamos appbar + input + bottom-nav */
+    #messagesMobileInner {
+        padding: 12px;
+        height: calc(100vh - var(--appbar-height) - var(--input-area-height) - var(--bottom-nav-height) - 12px);
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    /* si el panel no tiene appbar (ej. panelChannels), reserva espacio inferior para que la lista no quede oculta */
+    #panelChannels #chanelsMobile {
+        padding-bottom: calc(var(--bottom-nav-height) + 20px);
+    }
+
+    /* Chat input fijo por encima del bottom-nav */
+    #chatFormMobile.chat-input {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: calc(var(--bottom-nav-height) + 8px); /* 8px espacio */
+        z-index: 60;
+        display: flex;
+        justify-content: center;
+        padding: 6px 0;
+        box-sizing: border-box;
+    }
+
+    .message-input-mobile {
+        width: 100%;
+        min-height: 48px;
+        max-height: 140px;
+        height: 48px;
+        border-radius: 12px;
+        padding: 10px 14px;
+        border: 1px solid #E5E7EB;
+        background: #fff;
+        resize: none;
+        box-sizing: border-box;
+    }
+
+    /* aseguramos bottom-nav visible y encima del contenido */
+    .bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+    }
+
+    /* Ajustes appbar */
+    .appbar {
+        height: var(--appbar-height);
+        min-height: var(--appbar-height);
+        z-index: 50;
+    }
+
+    /* Ajustes para que .chanels se vea correctamente en channels panel */
+    #chanelsMobile {
+        padding: 12px;
+    }
+
+    .chanels .chanel .bubble {
+        width: 100%;
+    }
+
+    /* evitar que desktop interfiera */
+    .grid-container {
+        display: none !important;
+    }
+
+    /* algo de padding-bottom general para evitar que contenido quede tapado por input/bottom-nav */
+    .content { padding-bottom: calc(var(--bottom-nav-height) + var(--input-area-height) + 24px); }
+
+    /* modales deben permanecer por encima */
+    .modal-content, #config-modal, #edit-modal { z-index: 1000; }
 }

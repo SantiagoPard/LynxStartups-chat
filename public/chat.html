@@ -27,21 +27,19 @@
                 </span>
                 <hr class="sepLineChanel">
                 <div class="chanels" id="chanels">
-                    <!-- se agrega data chanel para lo del resonsive -->
-                    <div class="chanel active" data-channel="sala" id="salaDiv">
+                    <div class="chanel active" id="salaDiv">
                         <button class="btnChanel">
                             <span class="hash">#&nbsp;</span>
                             <span class="bubble">🏠 | Sala</span>
                         </button>
                     </div>
-
-                    <div class="chanel" id="bugsDiv" data-channel="bugs">
+                    <div class="chanel" id="bugsDiv">
                         <button class="btnChanel">
                             <span class="hash">#&nbsp;</span>
                             <span class="bubble">🪲 | Bugs</span>
                         </button>
                     </div>
-                    <div class="chanel" id="desarrolloDiv" data-channel="desarrollo">
+                    <div class="chanel" id="desarrolloDiv">
                         <button class="btnChanel">
                             <span class="hash">#&nbsp;</span>
                             <span class="bubble">💻 | Desarrollo</span>
@@ -146,9 +144,204 @@
 
     </div>
 
-    <script type="module" src="./js/chat.js"></script>
+    <!-- para movil -->
+
+    <!-- START: sección móvil (reemplaza la anterior) -->
+    <div class="containerMovil">
+
+        <!-- PANEL CHANNELS (Pestaña 1) - sin appbar -->
+        <div id="panelChannels" class="mobile-panel">
+            <div class="chanelsAndUser">
+                <div class="textChanels">
+                    <span class="hola">canales de voz</span>
+                    <hr class="sepLineChanel">
+                    <div class="chanels" id="chanelsMobile">
+                        <div class="chanel" data-channel="sala" id="salaDiv-mobile">
+                            <button class="btnChanel" type="button">
+                                <span class="hash">#&nbsp;</span><span class="bubble">🏠 | Sala</span>
+                            </button>
+                        </div>
+                        <div class="chanel" data-channel="bugs" id="bugsDiv-mobile">
+                            <button class="btnChanel" type="button">
+                                <span class="hash">#&nbsp;</span><span class="bubble">🪲 | Bugs</span>
+                            </button>
+                        </div>
+                        <div class="chanel" data-channel="desarrollo" id="desarrolloDiv-mobile">
+                            <button class="btnChanel" type="button">
+                                <span class="hash">#&nbsp;</span><span class="bubble">💻 | Desarrollo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user" id="user-mobile-small"></div>
+            </div>
+
+            <footer>
+                <div class="bottom-nav">
+                    <button class="btn-circle" title="Inicio" onclick="goCanales()">🏠</button>
+                    <button class="btn-circle btn-secondary" title="Tu" onclick="gotoTu()">Tu</button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- PANEL CHAT (Pestaña 2) - con appbar -->
+        <div id="panelChat" class="mobile-panel hidden">
+            <div class="appbar">
+                <button id="btnBackFromChat">←</button>
+                <div class="title" id="roomTitleMobile">#🏠 | Sala</div>
+                <button id="btnShowUsersMobile" onclick="goConectados()">👥</button>
+            </div>
+
+            <div class="chat-container" style="padding-top: 20px;">
+
+                <div id="chat-main" class="chat-main" style="overflow-y: auto; margin-bottom:26px;">
+                    <div id="messages" style="overflow-y: auto;" class="messages">
+
+                    </div>
+
+                </div>
+
+
+                <form id="chatForm" class="chat-input">
+                    <input type="text" id="messageInput" class="ph-center" placeholder="Enviar mensaje a sala"
+                        style="border-color: #E5E7EB; border-radius: 10px; padding: 4px; margin-bottom: -10px; width: 90%; min-height: 50px; max-height: 300px; resize: none; overflow: hidden; position: absolute; bottom: 20px;"
+                        autocomplete="off" required>
+                    </input>
+                </form>
+            </div>
+
+            <footer>
+                <div class="bottom-nav">
+                    <button class="btn-circle" title="Canales" onclick="goCanales()">🏠</button>
+                    <button class="btn-circle btn-secondary" title="Tu" onclick="gotoTu()">Tu</button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- PANEL USERS (Pestaña 3) - con appbar -->
+        <div id="panelUsers" class="mobile-panel hidden">
+            <div class="appbar">
+                <button id="btnBackFromUsers">←</button>
+                <div class="title">Usuarios conectados</div>
+                <div style="width:36px"></div>
+            </div>
+
+            <main class="content content-usuario">
+                <div>
+                    <div id="userSidebar" class="user-sidebar">
+                        <div id="userList" style="display: flex; flex-direction: column; padding: 10px ;">
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <div class="bottom-nav">
+                    <button class="btn-circle" title="Canales" onclick="goCanales()">🏠</button>
+                    <button class="btn-circle btn-secondary" title="Tu" onclick="gotoTu()">Tu</button>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Tu -->
+        <div id="panelTU" class="mobile-panel hidden">
+            <div class="appbar">
+                <!-- <button onclick="goBack()">←</button> -->
+                <div class="title">Tu</div>
+                <div style="width:36px"></div>
+            </div>
+
+            <div class="content-usuario">
+                <!-- Imagen SIEMPRE visible -->
+                <div id="userAvatar" style="text-align:center;">
+                    <img src="https://i.pravatar.cc/100" alt="avatar"
+                        style="width:100px; height:100px; border-radius:50%;">
+                </div>
+
+                <!-- Vista normal -->
+                <div id="userInfo" style="text-align:center;">
+                    <h3 id="userName">Among</h3>
+                    <p id="userAlias" style="color: gray;">@Andres</p>
+                </div>
+
+                <!-- Formulario para editar -->
+                <div id="editForm" style="display: none; margin-top: 16px;">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" value="">
+
+                    <label for="alias">Alias</label>
+                    <input type="text" id="alias" value="">
+                </div>
+
+                <!-- Botones -->
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button id="editBtn" onclick="gotoEditarP()">Editar Perfil</button>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="btn-circle" title="Inicio" onclick="goCanales()">🏠</button>
+                <button id="btnTu" class="btn-circle btn-secondary" title="Tu" onclick="gotoTu()">Tu</button>
+            </div>
+        </div>
+
+        <!-- panel editar  -->
+
+        <div id="panelEditar" class="mobile-panel hidden">
+            <div class="appbar">
+                <!-- <button onclick="goBack()">←</button> -->
+                <div class="title">Editar Perfil</div>
+                <div style="width:36px"></div>
+            </div>
+
+            <div id="userAvatar" style="text-align:center;">
+                <img src="https://i.pravatar.cc/100" alt="avatar" style="width:100px; height:100px; border-radius:50%;">
+            </div>
+            <!-- Vista normal -->
+            <div id="userInfo" style="text-align:center;">
+                <h3 id="userName">Among</h3>
+                <p id="userAlias" style="color: gray;">@Andres</p>
+            </div>
+
+
+            <div class="content-editar">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="alias">Alias</label>
+                    <input type="text" id="alias">
+                </div>
+                <button type="submit">Editar Perfil</button>
+            </div>
+
+
+
+            <div class="bottom-nav">
+                <button class="btn-circle" title="Inicio" onclick="goCanales()">🏠</button>
+                <button id="btnTu" class="btn-circle btn-secondary" title="Tu" onclick="gotoTu()">Tu</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- END sección móvil -->
+
+
+
+
+
+
+
 </body>
 
+<script type="module" src="./js/chat.js"></script>
+<script type="module" src="./js/chatMovi.js"></script>
 
 
 

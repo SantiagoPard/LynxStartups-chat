@@ -9,15 +9,12 @@ if (!user) redirectToLogin();
 // DOM
 const chatForm = document.getElementById("chatForm");
 const messageInput = document.getElementById("messageInput");
-const channelSala = document.getElementById("salaDiv")
-const channelBugs = document.getElementById("bugsDiv")
-const channelDev = document.getElementById("desarrolloDiv")
-
-//agregado para lo del responsive 
-const nameChanelEl = document.getElementById("nameChanel");
+const channelSala = document.getElementById("salaDiv");
+const channelBugs = document.getElementById("bugsDiv");
+const channelDev = document.getElementById("desarrolloDiv");
 
 
-let typeMessage = "sala"
+let typeMessage = "sala";
 //const channelsForm = document.getElementById("channels")
 // const logoutBtn = document.getElementById("logoutBtn");
 
@@ -26,25 +23,20 @@ connect(user);
 
 //chat ui
 window.onload = () => {
-   setTimeout(() => {
-  sendMessageChanel(user, "sala")
-
+  setTimeout(() => {
+    sendMessageChanel(user, "sala");
   }, "400");
   document.querySelector("#user").innerHTML = `
   <img class="imgUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
   <p class="contentUser">${user.name} <span class="nickName">@${user.nickname}</span></p>
   <button id="configBtn" ><i class="material-symbols-outlined">settings_account_box</i></button>
   `;
-  
- 
+
   const configBtn = document.getElementById("configBtn");
   configBtn.addEventListener("click", () => {
     showConfigModal(user);
   });
-
 };
-
-
 
 // Eventos
 chatForm.addEventListener("submit", function (e) {
@@ -54,65 +46,58 @@ chatForm.addEventListener("submit", function (e) {
   if (text) {
     sendMessage(user, text, typeMessage);
     messageInput.value = "";
-        //  messagesDiv.scrollTop = messagesDiv.scrollHeight;
- 
+    //  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
     // console.log(messagesDiv.scrollHeight)
   }
 });
 
-
-
-
-
 channelSala.addEventListener("click", () => {
-  typeMessage = "sala"
+  typeMessage = "sala";
 
-  changeChanel(typeMessage)
+  changeChanel(typeMessage);
 
-  user["chanel"] = typeMessage
+  user["chanel"] = typeMessage;
 
-  localStorage.setItem("user", JSON.stringify(user))
+  localStorage.setItem("user", JSON.stringify(user));
 
-  sendMessageChanel(user, typeMessage)
-
-})
+  sendMessageChanel(user, typeMessage);
+});
 
 channelBugs.addEventListener("click", () => {
+  typeMessage = "bugs";
+  changeChanel(typeMessage);
 
-  typeMessage = "bugs"
-  changeChanel(typeMessage)
+  user["chanel"] = typeMessage;
 
-  user["chanel"] = typeMessage
+  localStorage.setItem("user", JSON.stringify(user));
 
-  localStorage.setItem("user", JSON.stringify(user))
-
-  sendMessageChanel(user, typeMessage)
-})
+  sendMessageChanel(user, typeMessage);
+});
 channelDev.addEventListener("click", () => {
+  typeMessage = "desarrollo";
 
-  typeMessage = "desarrollo"
+  changeChanel(typeMessage);
 
-  changeChanel(typeMessage)
+  user["chanel"] = typeMessage;
 
-  user["chanel"] = typeMessage
+  localStorage.setItem("user", JSON.stringify(user));
 
-  localStorage.setItem("user", JSON.stringify(user))
-
-  sendMessageChanel(user, typeMessage)
-
-})
-
+  sendMessageChanel(user, typeMessage);
+});
 
 function changeChanel(typeMessage) {
+  let chanel = document.getElementById(`${typeMessage}Div`);
 
-  let chanel = document.getElementById(`${typeMessage}Div`)
-  
-  document.querySelector(".active > button").removeAttribute("disabled", "")
+  document.querySelector(".active > button").removeAttribute("disabled", "");
 
-  document.querySelector(".active").classList.remove("active")
+  document.querySelector(".active").classList.remove("active");
 
-  document.querySelector(`#${typeMessage}Div > button`).setAttribute("disabled", "")
+  document
+    .querySelector(`#${typeMessage}Div > button`)
+    .setAttribute("disabled", "");
 
-  chanel.classList.add("active")
+  chanel.classList.add("active");
 }
+
 
