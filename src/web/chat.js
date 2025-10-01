@@ -101,6 +101,21 @@ function setupChat(wss) {
                     JSON.stringify({ type: "chanel", chanel: data.chanel, historial: historial })
                 );
             }
+            if(data.type ==="usersMovil"){
+                const allUsers = getUsers();
+                 broadcast(users, {
+                    type: "users",
+                    users: allUsers.map(u => ({
+                        id: u.id,
+                        name: u.name,
+                        rol: u.rol,
+                        nickname: u.nickname,
+                        img: u.img,
+                        connected: users.some(c => c.id === u.id),
+                        chanel: u.chanel
+                    }))
+                });
+            }
         });
 
         ws.on("close", () => {

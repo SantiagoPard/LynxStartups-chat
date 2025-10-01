@@ -173,6 +173,7 @@ export function addSystemMessage(text) {
 export function updateUserList(users) {
 
     userList.innerHTML = "";
+    userListMovil.innerHTML = ""
     users.forEach(u => {
         const hr = document.createElement("hr");
         hr.classList.add("sepLineUsers")
@@ -190,11 +191,14 @@ export function updateUserList(users) {
 
     
         `;
+     if (window.innerWidth < 768) {
 
-        userList.appendChild(div);
-        userList.appendChild(hr)
-        userListMovil.appendChild(div)
-        userListMovil.appendChild(hr)
+         userListMovil.appendChild(div)
+         userListMovil.appendChild(hr)
+     }else{
+         userList.appendChild(div);
+         userList.appendChild(hr)
+     }
     });
 }
 

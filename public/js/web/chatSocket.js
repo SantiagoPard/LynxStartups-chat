@@ -31,6 +31,8 @@ export function connect(user) {
             case "users":
                 updateUserList(data.users);
                 break;
+            case "usersMovil":
+                updateUserList(data.users);
             default:
                 throw new Error("Tipo de mensaje desconocido: " + data.type);
         }
@@ -56,5 +58,14 @@ export function sendMessageChanel(user, chanel) {
         user: user,
         type: "chanel",
         chanel,
+    }));
+}
+
+export function updateUsers() {
+    
+    if (!socket || socket.readyState !== WebSocket.OPEN) return;
+
+    socket.send(JSON.stringify({
+        type: "usersMovil"
     }));
 }

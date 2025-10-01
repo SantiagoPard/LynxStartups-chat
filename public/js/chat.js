@@ -1,4 +1,4 @@
-import { connect, sendMessage, sendMessageChanel } from "./web/chatSocket.js";
+import { connect, sendMessage, sendMessageChanel, updateUsers } from "./web/chatSocket.js";
 import { clearUser, redirectToLogin, showConfigModal } from "./ui/chatUI.js";
 
 // Verificar usuario
@@ -42,10 +42,13 @@ window.onload = () => {
 
 // Eventos
 window.addEventListener('resize', () => {
-  if(window.innerWidth> 768){
+  if(window.innerWidth > 768){
       setTimeout(() => {
       sendMessageChanel(user, typeMessage);
     }, "400");
+    updateUsers()
+  }else{
+    updateUsers()
   }
 
 })
