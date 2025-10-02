@@ -7,7 +7,7 @@
 }
 
 .grid-container {
-
+visibility: visible;
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -94,6 +94,9 @@
     z-index: 100;
 }
 
+#chat-container{
+    padding-top: 4px;
+}
 
 .grid-container>.chanelsAndUser>.user {
     display: flex;
@@ -182,6 +185,7 @@
     display: flex;
     flex-direction: column;
     padding: 0px 30px 30px 30px;
+    padding-top: 6px;
 }
 
 .message {
@@ -200,6 +204,39 @@
     overflow-wrap: break-word;
     word-break: break-word;
     text-align: justify;
+}
+
+.rolAdministrador{
+  background-color: #FF7057;
+    font-size: 12px;
+    padding: 0px 4px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+.rolUsuario{
+  background-color: #b2f3af;
+    font-size: 12px;
+    padding: 0px 4px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+.rolDesarrollador{
+      background-color: #7faeeb;
+    font-size: 12px;
+    padding: 0px 4px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+.rolDiseñador{
+      background-color: #e9d184;
+    font-size: 12px;
+    padding: 0px 4px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
 }
 
 .pMessageText {
@@ -230,7 +267,7 @@
     border: 1px solid transparent;
     border-radius: 10px;
     color: #fff;
-    ;
+    
 }
 
 .userChatName {
@@ -257,6 +294,7 @@
 .imgUserList {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
 }
 
 .userListText {
@@ -324,11 +362,13 @@ input[type="reset"] {
 .imgUser {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
 }
 
 .imgChatUser {
     width: 64px;
     height: 64px;
+    border-radius: 50%;
 }
 
 /* CSS MODAL */

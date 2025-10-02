@@ -1,87 +1,102 @@
-/* Login */
+/* 📌 login.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e9ecf1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
 .login-container {
-    background: white;
-    padding: 30px 25px;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     width: 100%;
     max-width: 380px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
+    border: 1px solid #dcdcdc;
+    transition: transform 0.2s ease;
 }
 
-h1 {
-    margin-bottom: 25px;
-    color: var(--color-grey)
+.login-container:hover {
+    transform: translateY(-3px);
 }
 
+/* Título */
+.login-container h1 {
+    margin-bottom: 1.8rem;
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+}
+
+/* Formulario */
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 100%;
+    gap: 1rem;
 }
 
-input {
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-light-grey);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-lg);
+.login-form input {
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
 }
 
-.divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: var(--spacing-xl) 0;
-    width: 100%;
+.login-form input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74,144,226,0.3);
 }
 
-.divider span {
-    flex: 1;
-    border-bottom: 1px solid var(--color-background);
-    line-height: 0;
-    margin: 0 var(--spacing-md);
-    color: var(--color-light-grey);
-    font-size: var(--font-size-sm);
-}
-
-.btn-google {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    width: 100%;
-    padding: var(--spacing-sm);
-    border: 1px solid var(--color-light-grey);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
+/* Botón */
+.btn-primary {
+    padding: 12px;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
-    font-size: var(--font-size-md);
-    transition: background 0.3s;
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
-.btn-google img {
-    width: var(--spacing-xl);
-    height: var(--spacing-xl);
+.btn-primary:hover {
+    background: linear-gradient(135deg, #357abd, #2f5fa5);
+    transform: translateY(-2px);
 }
 
-.btn-google:hover {
-    background: var(--color-light-grey);
-}
-
+/* Error */
 .error {
-    color: red;
-    margin-top: var(--spacing-lg);
-    text-align: center;
-    font-size: var(--spacing-md);
+    margin-top: 1rem;
+    font-size: 14px;
+    color: #e74c3c;
+    display: none;
 }
 
-/* Responsivo Login */
+/* 📱 Responsive */
 @media (max-width: 480px) {
     .login-container {
-        margin: 0 var(--spacing-lg);
-        padding: 25px var(--spacing-xl);
+        padding: 2rem 1.5rem;
+        max-width: 90%;
+    }
+
+    .login-container h1 {
+        font-size: 22px;
+    }
+
+    .btn-primary {
+        font-size: 15px;
+        padding: 10px;
     }
 }

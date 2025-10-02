@@ -1,5 +1,5 @@
 import { connect, sendMessage, sendMessageChanel, updateUsers } from "./web/chatSocket.js";
-import { clearUser, redirectToLogin, showConfigModal } from "./ui/chatUI.js";
+import { clearUser, onInit, redirectToLogin, showConfigModal } from "./ui/chatUI.js";
 
 // Verificar usuario
 const user = JSON.parse(localStorage.getItem("user"));
@@ -25,28 +25,17 @@ connect(user);
 
 //chat ui
 window.onload = () => {
-
   setTimeout(() => {
     sendMessageChanel(user, "sala");
   }, "400");
-
-  document.querySelector("#user").innerHTML = `
-  <img class="imgUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
-  <p class="contentUser">${user.name} <span class="nickName">@${user.nickname}</span></p>
-  <button id="configBtn" ><i class="material-symbols-outlined">settings_account_box</i></button>
-  `;
-
-  const configBtn = document.getElementById("configBtn");
-  configBtn.addEventListener("click", () => {
-    showConfigModal(user);
-  });
+  changeChanelMobile(typeMessage)
+  onInit(user)
 };
 
 // Eventos
 window.addEventListener('resize', () => {
   if (window.innerWidth > 768) {
     setTimeout(() => {
-      console.log(typeMessage)
       sendMessageChanel(user, typeMessage);
     }, "400");
     updateUsers()
@@ -107,6 +96,8 @@ channelSala.addEventListener("click", () => {
 
   localStorage.setItem("user", JSON.stringify(user));
 
+  changeChanelMobile(typeMessage)
+
   sendMessageChanel(user, typeMessage);
 });
 
@@ -118,6 +109,8 @@ channelBugs.addEventListener("click", () => {
 
   localStorage.setItem("user", JSON.stringify(user));
 
+  changeChanelMobile(typeMessage)
+
   sendMessageChanel(user, typeMessage);
 });
 channelDev.addEventListener("click", () => {
@@ -128,6 +121,8 @@ channelDev.addEventListener("click", () => {
   user["chanel"] = typeMessage;
 
   localStorage.setItem("user", JSON.stringify(user));
+
+  changeChanelMobile(typeMessage)
 
   sendMessageChanel(user, typeMessage);
 });
@@ -146,4 +141,18 @@ function changeChanel(typeMessage) {
   chanel.classList.add("active");
 }
 
+function changeChanelMobile(typeMessage) {
+  const chanel =
+  {
+    sala: "#🏠 | Sala",
+    bugs: "#🪲 | Bugs",
+    desarrollo: "#💻 | Desarrollo"
+  }
+
+  document.getElementById("roomTitleMobile").innerText = chanel[typeMessage]
+
+  document.querySelector("#chanelsMobile > .active").classList.remove("active")
+
+  document.getElementById(`${typeMessage}Div-mobile`).classList.add("active")
+}
 

@@ -1,5 +1,6 @@
 // chatMovi.js (reemplaza todo)
 import { sendMessage, sendMessageChanel } from "./web/chatSocket.js";
+import { showConfigModal, showEditModalMobile } from "./ui/chatUI.js";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -13,10 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ahora incluye panelTU
     const panels = ["panelChannels", "panelChat", "panelUsers", "panelTU", "panelEditar"];
     panels.forEach((id) => {
+
       const el = document.getElementById(id);
       if (!el) return;
       if (id === panelId) el.classList.remove("hidden");
       else el.classList.add("hidden");
+
+      if (panelId === "panelTU") {
+        showConfigModal(user)
+      }
+      if (panelId === "panelEditar") {
+        showEditModalMobile(user)
+      }
     });
   }
 
@@ -73,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("user", JSON.stringify(userObj));
 
       setTimeout(() => {
-      sendMessageChanel(user, mobileType);
-    }, "400");
+        sendMessageChanel(user, mobileType);
+      }, "400");
 
-    changeChanel(mobileType);
-  
-  
-    
+      changeChanel(mobileType);
+
+
+
 
       try { sendMessageChanel(userObj, type); } catch (e) { console.warn("sendMessageChanel error", e); }
 
@@ -90,19 +99,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-function changeChanel(mobileType) {
-  let chanel = document.getElementById(`${mobileType}Div`);
 
-  document.querySelector(".active > button").removeAttribute("disabled", "");
 
-  document.querySelector(".active").classList.remove("active");
 
-  document
-    .querySelector(`#${mobileType}Div > button`)
-    .setAttribute("disabled", "");
+  function changeChanel(mobileType) {
+    let chanel = document.getElementById(`${mobileType}Div`);
 
-  chanel.classList.add("active");
-}
+    document.querySelector(".active > button").removeAttribute("disabled", "");
+
+    document.querySelector(".active").classList.remove("active");
+
+    document
+      .querySelector(`#${mobileType}Div > button`)
+      .setAttribute("disabled", "");
+
+    chanel.classList.add("active");
+  }
 
 
 

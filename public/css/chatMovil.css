@@ -1,9 +1,12 @@
-
 /*  */
 /* --- Responsive: pantallas pequeñas --- */
 
 .containerMovil {
-    display: none;
+    /* display: none; */
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
 }
 
 /* ---------- MOBILE BEHAVIOR: show one panel at a time ---------- */
@@ -39,6 +42,10 @@
 
     .containerMovil {
         display: block;
+        visibility: visible;
+        /* height: 0px; */
+        width: 100vw;
+        overflow: hidden;
         height: 100vh;
         overflow: hidden;
         position: relative;/
@@ -121,6 +128,25 @@
     }
 
     /* Chat html para móvil */
+
+.imgChatUser{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+}
+#messagesMovil > .message > .messageText > p > .userChatName{
+    font-size: 14px;
+}
+#messagesMovil > .message > .messageText > p > .nickName{
+    font-size: 12px;
+}
+#messagesMovil > .message > .messageText > p > .rol{
+    font-size: 12px;
+}
+#messagesMovil > .message{
+    padding: 0;
+}
+
     .content {
         flex: 1;
         overflow: auto;
@@ -137,7 +163,6 @@
         background: var(--blanco);
         padding: 10px;
         border-radius: 10px;
-        max-width: 70%;
     }
 
     .message.self {
@@ -240,7 +265,7 @@
         display: none;
     }
 
-   
+
     #messagesMobileInner {
         padding: 12px;
         height: calc(100vh - var(--appbar-height) - var(--input-area-height) - var(--bottom-nav-height) - 12px);
@@ -248,9 +273,23 @@
         box-sizing: border-box;
     }
 
-   
+
     #panelChannels #chanelsMobile {
         padding-bottom: calc(var(--bottom-nav-height) + 20px);
+    }
+
+    .mobile-panel {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+    #panelEditar {
+        display: grid;
+       grid-template-rows: 15vh 20vh 12vh 31vh auto ;
+    }
+
+    .content-editar > .form-group{
+        padding-bottom: 30px;
     }
 
     /* Chat input fijo por encima del bottom-nav */
@@ -296,7 +335,7 @@
         z-index: 50;
     }
 
-    
+
     #chanelsMobile {
         padding: 12px;
     }
@@ -305,9 +344,13 @@
         width: 100%;
     }
 
- 
+
     .grid-container {
-        display: none !important;
+        /* display: none !important; */
+        visibility: hidden;
+        height: 0px;
+        width: 0px;
+        overflow: hidden;
     }
 
 
@@ -337,7 +380,7 @@
         border-radius: 10px;
         padding: 4px;
         background: #fff;
-       
+
     }
 
     #chatForm {
@@ -363,21 +406,17 @@
         justify-content: center;
         cursor: pointer;
         color: rgb(0, 0, 0);
-        margin: 5px 0px 5px 5px ;
-        
+        margin: 5px 0px 5px 5px;
+
     }
 
     .send-btn .material-symbols-outlined {
         font-size: 24px;
     }
 
-.mobile-panel{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-}
 
-   .user-sidebar {
-        /* background-color: hsl(27, 100%, 85%); */
+    .user-sidebar {
+      
         height: 74vh;
     }
 

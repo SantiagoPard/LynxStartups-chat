@@ -17,46 +17,87 @@ export function addMessage(user, text) {
     const hr = document.createElement("hr");
     hr.classList.add("sepLine");
 
-    msgEl.innerHTML = `
-    
-    <img class="imgChatUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
+    //creacion estructura mensaje
+    const img = document.createElement("img");
+    img.classList.add("imgChatUser");
+    img.src = user.img;
 
-    <div class="messageText">
-        <p><span class="userChatName">${user.name}</span><span class="nickName">@${user.nickname}</span><span class="rol">${user.rol}</span></p>
+    const divMessage = document.createElement("div");
+    divMessage.classList.add("messageText");
 
-        <p class="pMessageText">
-            ${text}
-        </p>
-
-    </div>
-
-    `;
-
-        if (window.innerWidth < 768) {
-            
-            messagesDivMovil.appendChild(msgEl)
-            messagesDivMovil.appendChild(hr)
-            messagesDivMovil.scrollTop = messagesDivMovil.scrollHeight;
-            chatMainDivMovile.scrollTop = chatMainDivMovile.scrollHeight
-        } else {
-            messagesDiv.appendChild(msgEl);
-            messagesDiv.appendChild(hr);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-            chatMainDiv.scrollTop = chatMainDiv.scrollHeight
-        }
+    //contiene el nombre , nickname y rol
+    const pUserData = document.createElement("p");
 
 
-    // messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    const spanUsChatName = document.createElement("span")
+    spanUsChatName.classList.add("userChatName");
+    spanUsChatName.innerText = user.name;
+
+    const spanNickName = document.createElement("span");
+    spanNickName.classList.add("nickName");
+    spanNickName.innerText = user.nickname;
+
+    const spanRol = document.createElement("span");
+    spanRol.classList.add(`rol${user.rol}`);
+    spanRol.innerText = user.rol;
+
+    //el mensaje a enviar
+    const pText = document.createElement("p");
+    pText.classList.add("pMessageText");
+    pText.innerText = text;
+
+
+    if (window.innerWidth < 768) {
+        //insercion de el mensaje para movil
+        pUserData.appendChild(spanUsChatName)
+        pUserData.appendChild(spanNickName)
+        pUserData.appendChild(spanRol)
+        divMessage.appendChild(pUserData);
+        divMessage.appendChild(pText);
+        msgEl.appendChild(img);
+        msgEl.appendChild(divMessage);
+        messagesDivMovil.appendChild(msgEl);
+        messagesDivMovil.appendChild(hr);
+        messagesDivMovil.scrollTop = messagesDivMovil.scrollHeight;
+        chatMainDivMovile.scrollTop = chatMainDivMovile.scrollHeight
+    } else {
+        //insercion de el mensaje para Pc
+        pUserData.appendChild(spanUsChatName)
+        pUserData.appendChild(spanNickName)
+        pUserData.appendChild(spanRol)
+        divMessage.appendChild(pUserData);
+        divMessage.appendChild(pText);
+        msgEl.appendChild(img);
+        msgEl.appendChild(divMessage);
+        messagesDiv.appendChild(msgEl);
+        messagesDiv.appendChild(hr);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        chatMainDiv.scrollTop = chatMainDiv.scrollHeight
+    }
+
 
 
 
 
 }
 
+export function onInit(user){
+    
+      document.querySelector("#user").innerHTML = `
+      <img class="imgUser" src="${user.img}" alt="">
+      <p class="contentUser">${user.name} <span class="nickName">@${user.nickname}</span></p>
+      <button id="configBtn" ><i class="material-symbols-outlined">settings_account_box</i></button>
+      `;
+    
+      const configBtn = document.getElementById("configBtn");
+      configBtn.addEventListener("click", () => {
+        showConfigModal(user);
+      });
+}
+
+
 export function addHistorial(chanel, message) {
-    // messagesDiv.innerHTML = "";
-    // console.log(chanel)
     switch (chanel) {
         case "sala":
             document.getElementById("nameChanel").innerText = "#🏠 | SALA"
@@ -68,7 +109,6 @@ export function addHistorial(chanel, message) {
             break;
         case "desarrollo":
             document.getElementById("nameChanel").innerText = "#💻 | DESARROLLO"
-
             addHistoricalMessages(message)
             break;
     }
@@ -86,10 +126,10 @@ function addHistoricalMessages(messages) {
         hr.classList.add("sepLine");
         msgEl.innerHTML = `
     
-    <img class="imgChatUser" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
+    <img class="imgChatUser" src="${u.img}" alt="">
 
     <div class="messageText">
-        <p><span class="userChatName">${u.userName}</span><span class="nickName">@${u.nickname}</span><span class="rol">${u.rol}</span></p>
+        <p><span class="userChatName">${u.userName}</span><span class="nickName">@${u.nickname}</span><span class="rol${u.rol}">${u.rol}</span></p>
 
         <p class="pMessageText">
             ${u.text}
@@ -127,6 +167,7 @@ export function showConfigModal(user) {
     const closeModalBtn = configModal.querySelector(".close-modal");
     const cancelBtn = document.getElementById("cancelBtn");
     const editBtn = document.getElementById("editBtn");
+    const panels = ["panelChannels", "panelChat", "panelUsers", "panelTU", "panelEditar"];
 
     // Rellenar campos del modal de vista
     if (user) {
@@ -138,18 +179,69 @@ export function showConfigModal(user) {
         document.getElementById("editAlias").value = user.nickname || "";
     }
 
+    panels.forEach((id) => {
+        const el = document.getElementById(id);
+        el.classList.add("hidden")
+        if (!el) return;
+        if (id === "panelTU") el.classList.remove("hidden");
+    });
+
+
     configModal.classList.remove("hidden");
 
-    closeModalBtn.onclick = () => configModal.classList.add("hidden");
-    cancelBtn.onclick = () => configModal.classList.add("hidden");
+
+
+    closeModalBtn.onclick = () => {
+        configModal.classList.add("hidden");
+        panels.forEach((id) => {
+            console.log("hola afuera" + "panelId")
+
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelChannels") el.classList.remove("hidden");
+        });
+    }
+    cancelBtn.onclick = () => {
+        configModal.classList.add("hidden");
+        panels.forEach((id) => {
+            console.log("hola afuera" + "panelId")
+
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelChannels") el.classList.remove("hidden");
+        });
+    }
 
     editBtn.onclick = () => {
         configModal.classList.add("hidden");
         editModal.classList.remove("hidden");
+
+        panels.forEach((id) => {
+            console.log("hola afuera" + "panelId")
+
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelEditar") el.classList.remove("hidden");
+        });
     };
 
     // Cierre del modal de edición
-    document.querySelector(".close-edit-modal").onclick = () => editModal.classList.add("hidden");
+    document.querySelector(".close-edit-modal").onclick = () => {
+        editModal.classList.add("hidden");
+
+
+        panels.forEach((id) => {
+            console.log("hola mundo panel")
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelChannels") el.classList.remove("hidden");
+        });
+
+    }
     document.getElementById("cancelEditBtn").onclick = () => editModal.classList.add("hidden");
 
     // Guardar
@@ -164,7 +256,54 @@ export function showConfigModal(user) {
     };
 }
 
+export function showEditModalMobile(user) {
+    const configModal = document.getElementById("config-modal");
+    const editModal = document.getElementById("edit-modal");
+    const panels = ["panelChannels", "panelChat", "panelUsers", "panelTU", "panelEditar"];
 
+    document.getElementById("editName").value = user.name || "";
+    document.getElementById("editAlias").value = user.nickname || "";
+    configModal.classList.add("hidden");
+    editModal.classList.remove("hidden");
+    editBtn.onclick = () => {
+        configModal.classList.add("hidden");
+        editModal.classList.remove("hidden");
+
+        panels.forEach((id) => {
+
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelEditar") el.classList.remove("hidden");
+        });
+    };
+
+    // Cierre del modal de edición
+    document.querySelector(".close-edit-modal").onclick = () => {
+        editModal.classList.add("hidden");
+
+
+        panels.forEach((id) => {
+            console.log("hola mundo panel")
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelChannels") el.classList.remove("hidden");
+        });
+
+    }
+
+    // Guardar
+    document.getElementById("saveBtn").onclick = () => {
+        const name = document.getElementById("editName").value;
+        const alias = document.getElementById("editAlias").value;
+
+        console.log("Guardar:", name, alias);
+
+
+        editModal.classList.add("hidden");
+    };
+}
 
 
 export function addSystemMessage(text) {
@@ -181,7 +320,7 @@ export function updateUserList(users) {
         div.classList.add("user-item");
 
         div.innerHTML = `
-    <img class="imgUserList" src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="">
+    <img class="imgUserList" src="${u.img}" alt="">
     <div class="userListText">
         <p><span class="userChatName">${u.name}</span><span class="nickName"> @${u.nickname}</span><span></p>
         
@@ -191,14 +330,14 @@ export function updateUserList(users) {
 
     
         `;
-     if (window.innerWidth < 768) {
+        if (window.innerWidth < 768) {
 
-         userListMovil.appendChild(div)
-         userListMovil.appendChild(hr)
-     }else{
-         userList.appendChild(div);
-         userList.appendChild(hr)
-     }
+            userListMovil.appendChild(div)
+            userListMovil.appendChild(hr)
+        } else {
+            userList.appendChild(div);
+            userList.appendChild(hr)
+        }
     });
 }
 

@@ -4,7 +4,7 @@
         "name": "Admin",
         "password": "1234",
         "email": "admin@chat.com",
-        "rol": "admin",
+        "rol": "Administrador",
         "nickname": "adminAs",
         "img": "https://i.pravatar.cc/150?img=1",
         "chanel": "sala"
@@ -14,8 +14,8 @@
         "name": "Usuario",
         "password": "abcd",
         "email": "user@chat.com",
-        "rol": "user",
-        "nickname": "designUser",
+        "rol": "Usuario",
+        "nickname": "userX",
         "img": "https://i.pravatar.cc/150?img=2",
         "chanel": "sala"
     },
@@ -24,8 +24,18 @@
         "name": "Alex",
         "password": "1",
         "email": "a",
-        "rol": "a",
+        "rol": "Desarrollador",
         "nickname": "devAlex",
+        "img": "https://i.pravatar.cc/150?img=2",
+        "chanel": "sala"
+    },
+       {
+        "id": "4",
+        "name": "Santiago",
+        "password": "1221",
+        "email": "a",
+        "rol": "Diseñador",
+        "nickname": "designUser",
         "img": "https://i.pravatar.cc/150?img=2",
         "chanel": "sala"
     }

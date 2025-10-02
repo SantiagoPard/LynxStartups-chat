@@ -52,12 +52,12 @@ function setupChat(wss) {
                     "userName": data.user.name,
                     "rol": data.user.rol,
                     "nickname": data.user.nickname,
+                    "img":data.user.img,
                     "text": data.text
                 }
 
 
 
-                console.log(data.chanel)
 
                 switch (data.chanel) {
                     case "sala":
@@ -70,9 +70,9 @@ function setupChat(wss) {
                         messageBodyDev.push(registroMessage)
                         break;
                 }
-
-                // console.log(users)   
+console.log(users)
                 broadcastChanel(users, { type: "chat", user: data.user, text: data.text, chanel: data.chanel });
+
             }
 
             if (data.type === "chanel") {
@@ -96,7 +96,6 @@ function setupChat(wss) {
                         break;
                 }
                 historial = historial;
-                console.log(historial)
                 ws.send(
                     JSON.stringify({ type: "chanel", chanel: data.chanel, historial: historial })
                 );
