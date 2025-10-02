@@ -1,5 +1,5 @@
 import { connect, sendMessage, sendMessageChanel, updateUsers } from "./web/chatSocket.js";
-import { clearUser, onInit, redirectToLogin, showConfigModal , changeChanel, changeChanelMobile } from "./ui/chatUI.js";
+import { clearUser, onInit, redirectToLogin, showConfigModal , changeChanel, changeChanelMobile, keepSameInputValues } from "./ui/chatUI.js";
 
 // Verificar usuario
 const user = JSON.parse(localStorage.getItem("user"));
@@ -45,6 +45,8 @@ window.addEventListener('resize', () => {
 
 })
 
+
+keepSameInputValues()
 
 channelSalaMovil.addEventListener("click", () => {
   typeMessage = "sala"

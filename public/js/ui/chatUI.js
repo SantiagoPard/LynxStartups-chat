@@ -203,8 +203,7 @@ export function showConfigModal(user) {
         configModal.querySelector("p").textContent = "@" + (user.nickname || "Sin alias");
 
         // También rellenar el modal de edición por si lo abre después
-        document.getElementById("editName").value = user.name || "";
-        document.getElementById("editAlias").value = user.nickname || "";
+
         document.getElementById("imgPcModalEdit").src = user.img
     }
 
@@ -279,7 +278,16 @@ export function showConfigModal(user) {
         });
 
     }
-    document.getElementById("cancelEditBtn").onclick = () => editModal.classList.add("hidden");
+    document.getElementById("cancelEditBtn").onclick = () => {
+        editModal.classList.add("hidden");
+        panels.forEach((id) => {
+            console.log("hola mundo panel")
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelChannels") el.classList.remove("hidden");
+        });
+    }
 
     // Guardar
     document.getElementById("saveBtn").onclick = () => {
@@ -300,6 +308,7 @@ export function showEditModalMobile(user) {
 
     document.getElementById("editName").value = user.name || "";
     document.getElementById("editAlias").value = user.nickname || "";
+
     configModal.classList.add("hidden");
     editModal.classList.remove("hidden");
     editBtn.onclick = () => {
@@ -330,6 +339,17 @@ export function showEditModalMobile(user) {
 
     }
 
+    document.getElementById("cancelEditBtn").onclick = () => {
+        editModal.classList.add("hidden");
+        panels.forEach((id) => {
+            console.log("hola mundo panel")
+            const el = document.getElementById(id);
+            el.classList.add("hidden")
+            if (!el) return;
+            if (id === "panelChannels") el.classList.remove("hidden");
+        });
+    }
+
     // Guardar
     document.getElementById("saveBtn").onclick = () => {
         const name = document.getElementById("editName").value;
@@ -342,6 +362,31 @@ export function showEditModalMobile(user) {
     };
 }
 
+export function keepSameInputValues() {
+    //mensajes
+    document.getElementById("messageInput").addEventListener("keyup", () => {
+        document.getElementById("messageInputMovil").value = document.getElementById("messageInput").value
+    })
+
+    document.getElementById("messageInputMovil").addEventListener("keyup", () => {
+        document.getElementById("messageInput").value = document.getElementById("messageInputMovil").value
+    })
+    //espacio para editar nombre
+    document.getElementById("editName").addEventListener("keyup", () => {
+        document.getElementById("nameEditMovil").value = document.getElementById("editName").value
+    })
+    document.getElementById("nameEditMovil").addEventListener("keyup", () => {
+        document.getElementById("editName").value = document.getElementById("nameEditMovil").value
+    })
+    //espacio para editar apodo
+    document.getElementById("editAlias").addEventListener("keyup", () => {
+        document.getElementById("aliasEditMovil").value = document.getElementById("editAlias").value
+    })
+    document.getElementById("aliasEditMovil").addEventListener("keyup", () => {
+        document.getElementById("editAlias").value = document.getElementById("aliasEditMovil").value
+    })
+
+}
 
 export function addSystemMessage(text) {
 }
