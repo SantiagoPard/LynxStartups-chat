@@ -27,9 +27,10 @@ connect(user);
 window.onload = () => {
   setTimeout(() => {
     sendMessageChanel(user, "sala");
-  }, "400");
+  }, "600");
   changeChanelMobile(typeMessage)
   onInit(user)
+  
 };
 
 // Eventos
@@ -37,7 +38,7 @@ window.addEventListener('resize', () => {
   if (window.innerWidth > 768) {
     setTimeout(() => {
       sendMessageChanel(user, typeMessage);
-    }, "400");
+    }, "600");
     updateUsers()
   } else {
     updateUsers()

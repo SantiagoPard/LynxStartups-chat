@@ -3,6 +3,7 @@ const messagesDivMovil = document.getElementById("messagesMovil");
 // chat-main
 const chatMainDiv = document.getElementById("chat-main");
 
+//chat-main-movil
 const chatMainDivMovile = document.getElementById("chat-main-movil");
 
 const userList = document.getElementById("userList");
@@ -144,16 +145,13 @@ function addHistoricalMessages(messages) {
         if (window.innerWidth < 768) {
             messagesDivMovil.appendChild(msgEl)
             messagesDivMovil.appendChild(hr)
-            messagesDivMovil.scrollTop = messagesDivMovil.scrollHeight;
         } else {
             messagesDiv.appendChild(msgEl);
             messagesDiv.appendChild(hr);
-
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
         }
 
-
+ chatMainDiv.scrollTop = chatMainDiv.scrollHeight
+ chatMainDivMovile.scrollTop = chatMainDivMovile.scrollHeight
 
     })
 }
@@ -169,6 +167,8 @@ export function changeChanel(typeMessage) {
         .setAttribute("disabled", "");
 
     chanel.classList.add("active");
+    chatMainDiv.scrollTop = chatMainDiv.scrollHeight
+     chatMainDivMovile.scrollTop = chatMainDivMovile.scrollHeight
 }
 
 export function changeChanelMobile(typeMessage) {
@@ -184,6 +184,8 @@ export function changeChanelMobile(typeMessage) {
     document.querySelector("#chanelsMobile > .active").classList.remove("active")
 
     document.getElementById(`${typeMessage}Div-mobile`).classList.add("active")
+    chatMainDiv.scrollTop = chatMainDiv.scrollHeight
+     chatMainDivMovile.scrollTop = chatMainDivMovile.scrollHeight
 }
 
 

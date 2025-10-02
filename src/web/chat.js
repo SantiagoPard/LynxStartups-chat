@@ -62,15 +62,25 @@ function setupChat(wss) {
                 switch (data.chanel) {
                     case "sala":
                         messageBodySala.push(registroMessage)
+                        if(messageBodySala.length > 50){
+                            messageBodySala.shift()
+                        }
                         break;
                     case "bugs":
                         messageBodyBugs.push(registroMessage)
+                        if(messageBodySala.length > 50){
+                            messageBodySala.shift()
+                        }
                         break;
                     case "desarrollo":
                         messageBodyDev.push(registroMessage)
+                        if(messageBodySala.length == 50){
+                            messageBodySala.shift()
+                        }
                         break;
                 }
-console.log(users)
+                
+                console.log(messageBodySala)
                 broadcastChanel(users, { type: "chat", user: data.user, text: data.text, chanel: data.chanel });
 
             }
