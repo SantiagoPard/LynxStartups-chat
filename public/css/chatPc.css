@@ -1,3 +1,17 @@
+:root {
+    --bg:#E5E7EB;
+    --black:#000;
+    --white:#fff;
+    --greenOnl:#10B981;
+    --bg-Bubble:#3B82F6;
+    --userChatName:#2563EB;
+    --bg-txt-Administrador:#FF7057;
+    --bg-txt-Usuario:#b2f3af;
+    --bg-txt-Desarrollador:#7faeeb;
+    --bg-txt-Diseñador:#e9d184;
+    --color-nickName:#9CA3AF;
+    --ofline:red;
+}
 * {
     padding: 0;
     margin: 0;
@@ -16,15 +30,15 @@ visibility: visible;
 }
 
 .grid-container>div {
-    border: 1px solid #000;
-    background-color: #E5E7EB;
+    border: 1px solid var(--black);
+    background-color: var(--bg);
     color: #1E40AF;
 }
 
 .sepLineChanel {
     position: relative;
     margin-top: -8px;
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     width: 100%;
     z-index: -1;
 }
@@ -88,7 +102,7 @@ visibility: visible;
 
     position: relative;
     text-align: center;
-    background-color: #E5E7EB;
+    background-color: var(--bg);
     padding-left: 4px;
     padding-right: 4px;
     z-index: 100;
@@ -104,7 +118,7 @@ visibility: visible;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     margin-left: 4px;
     margin-right: 4px;
     margin-bottom: 2px;
@@ -114,7 +128,7 @@ visibility: visible;
 }
 
 .grid-container>.chat-container {
-    background-color: #fff;
+    background-color: var(--white);
     display: grid;
     grid-template-rows: 86vh auto;
 }
@@ -124,14 +138,13 @@ visibility: visible;
     width: 14px;
     height: 14px;
     margin-right: 4px;
-    border: 1px solid #10B981;
+    border: 1px solid var(--greenOnl);
     border-radius: 10px;
-    background-color: #10B981;
+    background-color: var(--greenOnl);
 }
 
 .ph-center::placeholder {
     color: #9CA3AF;
-
     padding-top: 12px;
     padding-left: 10px;
 }
@@ -148,7 +161,6 @@ visibility: visible;
 
 .chanel .hash {
     color: #374151;
-
 }
 
 .bubble {
@@ -169,11 +181,11 @@ visibility: visible;
 } */
 .active>button>.bubble {
     background-color: #AFBED2;
-    color: #3B82F6;
+    color: var(--bg-Bubble);
 }
 
 .active>button>.hash {
-    color: #3B82F6;
+    color: var(--bg-Bubble);
 }
 
 .self {
@@ -207,41 +219,41 @@ visibility: visible;
 }
 
 .rolAdministrador{
-  background-color: #FF7057;
+  background-color: var(--bg-txt-Administrador);
     font-size: 12px;
     padding: 0px 4px;
     border: 1px solid transparent;
     border-radius: 10px;
-    color: #fff;
+    color: var(--white);
 }
 .rolUsuario{
-  background-color: #b2f3af;
+  background-color: var(--bg-txt-Usuario);
     font-size: 12px;
     padding: 0px 4px;
     border: 1px solid transparent;
     border-radius: 10px;
-    color: #fff;
+    color: var(--white);
 }
 .rolDesarrollador{
-      background-color: #7faeeb;
+      background-color: var(--bg-txt-Desarrollador);
     font-size: 12px;
     padding: 0px 4px;
     border: 1px solid transparent;
     border-radius: 10px;
-    color: #fff;
+    color: var(--white);
 }
 .rolDiseñador{
-      background-color: #e9d184;
+      background-color: var(--bg-txt-Diseñador);
     font-size: 12px;
     padding: 0px 4px;
     border: 1px solid transparent;
     border-radius: 10px;
-    color: #fff;
+    color: var(--white);
 }
 
 .pMessageText {
     padding-left: 24px;
-    color: #000;
+    color: var(--black);
 }
 
 .sepLine {
@@ -256,11 +268,11 @@ visibility: visible;
 }
 
 .nickName {
-    color: #9CA3AF;
+    color: var(--color-nickName);
     padding: 0px 4px;
 }
 
-.rol {
+/* .rol {
     background-color: #FF7057;
     font-size: 12px;
     padding: 0px 4px;
@@ -268,10 +280,10 @@ visibility: visible;
     border-radius: 10px;
     color: #fff;
     
-}
+} */
 
 .userChatName {
-    color: #2563EB;
+    color: var(--userChatName);
 }
 
 .messageText {
@@ -319,9 +331,9 @@ visibility: visible;
     width: 14px;
     margin-right: 4px;
     height: 14px;
-    border: 1px solid red;
+    border: 1px solid var(--ofline);
     border-radius: 10px;
-    background-color: red;
+    background-color: var(--ofline);
 }
 
 .user-sidebar {
@@ -391,7 +403,7 @@ input[type="reset"] {
 }
 
 .modal-content {
-    background: #fff;
+    background: var(--white);
     border-radius: 24px;
     padding: 32px 24px;
     box-shadow: 0 8px 32px rgba(230, 227, 227, 0.979);
@@ -415,7 +427,7 @@ input[type="reset"] {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    color: #000;
+    color: var(--black);
 }
 
 .close-modal:hover,
@@ -429,7 +441,7 @@ input[type="reset"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #fff;
+    background: var(--white);
     border-radius: 24px;
     padding: 32px 24px;
     width: 25%;
@@ -442,7 +454,7 @@ input[type="reset"] {
     border: 1px solid #E5E7EB;
     border-radius: 6px;
     background-color: #F2F4F7;
-    color: #9CA3AF;
+    color: var(--color-nickName);
 }
 
 #editBtn,
@@ -472,17 +484,6 @@ input[type="reset"] {
     border: none;
 }
 
-/* #configBtn {
-    font-size: 20px;
-    background: #2563EB;
-    color: #fff;
-    padding: 2px 2px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s ease;
-} */
 
 .material-symbols-outlined {
     font-variation-settings:

@@ -82,18 +82,18 @@ export function addMessage(user, text) {
 
 }
 
-export function onInit(user){
-    
-      document.querySelector("#user").innerHTML = `
+export function onInit(user) {
+
+    document.querySelector("#user").innerHTML = `
       <img class="imgUser" src="${user.img}" alt="">
       <p class="contentUser">${user.name} <span class="nickName">@${user.nickname}</span></p>
       <button id="configBtn" ><i class="material-symbols-outlined">settings_account_box</i></button>
       `;
-    
-      const configBtn = document.getElementById("configBtn");
-      configBtn.addEventListener("click", () => {
+
+    const configBtn = document.getElementById("configBtn");
+    configBtn.addEventListener("click", () => {
         showConfigModal(user);
-      });
+    });
 }
 
 
@@ -157,9 +157,36 @@ function addHistoricalMessages(messages) {
 
     })
 }
+export function changeChanel(typeMessage) {
+    let chanel = document.getElementById(`${typeMessage}Div`);
+
+    document.querySelector(".active > button").removeAttribute("disabled", "");
+
+    document.querySelector(".active").classList.remove("active");
+
+    document
+        .querySelector(`#${typeMessage}Div > button`)
+        .setAttribute("disabled", "");
+
+    chanel.classList.add("active");
+}
+
+export function changeChanelMobile(typeMessage) {
+    const chanel =
+    {
+        sala: "#🏠 | Sala",
+        bugs: "#🪲 | Bugs",
+        desarrollo: "#💻 | Desarrollo"
+    }
+
+    document.getElementById("roomTitleMobile").innerText = chanel[typeMessage]
+
+    document.querySelector("#chanelsMobile > .active").classList.remove("active")
+
+    document.getElementById(`${typeMessage}Div-mobile`).classList.add("active")
+}
 
 
-//fin cod agregado 
 
 export function showConfigModal(user) {
     const configModal = document.getElementById("config-modal");
@@ -171,19 +198,29 @@ export function showConfigModal(user) {
 
     // Rellenar campos del modal de vista
     if (user) {
+        document.getElementById('imgPcModal').src = user.img
         configModal.querySelector("h3").textContent = user.name || "Sin nombre";
         configModal.querySelector("p").textContent = "@" + (user.nickname || "Sin alias");
 
         // También rellenar el modal de edición por si lo abre después
         document.getElementById("editName").value = user.name || "";
         document.getElementById("editAlias").value = user.nickname || "";
+        document.getElementById("imgPcModalEdit").src = user.img
     }
 
     panels.forEach((id) => {
         const el = document.getElementById(id);
         el.classList.add("hidden")
         if (!el) return;
-        if (id === "panelTU") el.classList.remove("hidden");
+        if (id === "panelTU") {
+            el.classList.remove("hidden");
+            document.querySelector('#imgTu').src = user.img
+            document.querySelector('#userNameTu').innerText = user.name
+            document.querySelector('#userAliasTu').innerText = user.nickname
+            document.querySelector('#imgMovilEdit').src = user.img
+            document.querySelector('#userNameMovilEdit').innerText = user.name
+            document.querySelector('#userAliasMovilEdit').innerText = user.nickname
+        }
     });
 
 

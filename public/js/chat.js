@@ -1,5 +1,5 @@
 import { connect, sendMessage, sendMessageChanel, updateUsers } from "./web/chatSocket.js";
-import { clearUser, onInit, redirectToLogin, showConfigModal } from "./ui/chatUI.js";
+import { clearUser, onInit, redirectToLogin, showConfigModal , changeChanel, changeChanelMobile } from "./ui/chatUI.js";
 
 // Verificar usuario
 const user = JSON.parse(localStorage.getItem("user"));
@@ -99,6 +99,7 @@ channelSala.addEventListener("click", () => {
   changeChanelMobile(typeMessage)
 
   sendMessageChanel(user, typeMessage);
+
 });
 
 channelBugs.addEventListener("click", () => {
@@ -112,7 +113,9 @@ channelBugs.addEventListener("click", () => {
   changeChanelMobile(typeMessage)
 
   sendMessageChanel(user, typeMessage);
+
 });
+
 channelDev.addEventListener("click", () => {
   typeMessage = "desarrollo";
 
@@ -127,32 +130,4 @@ channelDev.addEventListener("click", () => {
   sendMessageChanel(user, typeMessage);
 });
 
-function changeChanel(typeMessage) {
-  let chanel = document.getElementById(`${typeMessage}Div`);
-
-  document.querySelector(".active > button").removeAttribute("disabled", "");
-
-  document.querySelector(".active").classList.remove("active");
-
-  document
-    .querySelector(`#${typeMessage}Div > button`)
-    .setAttribute("disabled", "");
-
-  chanel.classList.add("active");
-}
-
-function changeChanelMobile(typeMessage) {
-  const chanel =
-  {
-    sala: "#🏠 | Sala",
-    bugs: "#🪲 | Bugs",
-    desarrollo: "#💻 | Desarrollo"
-  }
-
-  document.getElementById("roomTitleMobile").innerText = chanel[typeMessage]
-
-  document.querySelector("#chanelsMobile > .active").classList.remove("active")
-
-  document.getElementById(`${typeMessage}Div-mobile`).classList.add("active")
-}
 
